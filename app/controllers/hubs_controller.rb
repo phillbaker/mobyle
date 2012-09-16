@@ -2,7 +2,7 @@ class HubsController < ApplicationController
   # GET /users/:user_id/hubs
   # GET /users/:user_id/hubs.json
   def index
-    @user = User.get(params[:user_id])
+    @user = User.get(params[:user_id]) || not_found
     @hubs = @user.hubs
 
     respond_to do |format|
@@ -14,8 +14,8 @@ class HubsController < ApplicationController
   # GET /users/:user_id/hubs/1
   # GET /users/:user_id/hubs/1.json
   def show
-    @user = User.get(params[:user_id])
-    @hub = Hub.get(params[:id]) #TODO does this need to be scope too?
+    @user = User.get(params[:user_id]) || not_found
+    @hub = @user.hubs
 
     respond_to do |format|
       format.html # show.html.erb
@@ -26,7 +26,7 @@ class HubsController < ApplicationController
   # GET /users/:user_id/hubs/new
   # GET /users/:user_id/hubs/new.json
   def new
-    @user = User.get(params[:user_id])
+    @user = User.get(params[:user_id]) || not_found
     @hub = Hub.new(:user => @user)
 
     respond_to do |format|
@@ -37,14 +37,14 @@ class HubsController < ApplicationController
 
   # GET /user/:user_id/hubs/1/edit
   def edit
-    @user = User.get(params[:user_id])
-    @hub = Hub.get(params[:id])
+    @user = User.get(params[:user_id]) || not_found
+    @hub = Hub.get(params[:id]) || not_found
   end
 
   # POST /user/:user_id/hubs
   # POST /user/:user_id/hubs.json
   def create
-    @user = User.get(params[:user_id])
+    @user = User.get(params[:user_id]) || not_found
     @hub = Hub.new(params[:hub])
     @hub.user = @user
 
@@ -62,7 +62,7 @@ class HubsController < ApplicationController
   # PUT /user/:user_id/hubs/1
   # PUT /user/:user_id/hubs/1.json
   def update
-    @user = User.get(params[:user_id])
+    @user = User.get(params[:user_id]) || not_found
     @hub = Hub.get(params[:id])
 
     respond_to do |format|
@@ -79,8 +79,8 @@ class HubsController < ApplicationController
   # DELETE /user/:user_id/hubs/1
   # DELETE /user/:user_id/hubs/1.json
   def destroy
-    @user = User.get(params[:user_id])
-    @hub = Hub.get(params[:id])
+    @user = User.get(params[:user_id]) || not_found
+    @hub = Hub.get(params[:id]) || not_found
     @hub.destroy
 
     respond_to do |format|

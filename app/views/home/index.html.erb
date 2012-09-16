@@ -1,2 +1,12 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<h1>iHub</h1>
+<h2>Home</h2>
+<% if current_user != nil && user_signed_in? %>
+	<% if current_user.hubs.size > 0 %>
+		<% @user = current_user; @hubs = current_user.hubs %>
+		<%= render :template => 'hubs/index' %>
+	<% else %>
+		You don't have any hubs, why don't you <a href="<%= new_user_hub_path(current_user) %>">make some hubs</a>!
+	<% end %>
+<% else %>
+	Welcome, create an account!
+<% end %>
