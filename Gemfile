@@ -28,12 +28,15 @@ gem 'dm-devise',         '~> 2.1.0'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass-rails',   '~> 3.2.5'
+  # gem 'sass-rails',   '~> 3.2.5'
+  gem 'therubyracer'
+  gem 'less-rails'
   gem 'coffee-rails', '~> 3.2.2'
   gem 'uglifier',     '~> 1.2.4'
 end
 
 gem 'jquery-rails', '~> 2.0.1'
+gem 'less-rails-bootstrap'
 
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.1'
@@ -54,4 +57,7 @@ end
 group :test do
   # Pretty printed test output
   gem 'turn', '~> 0.9.4', :require => false
+  # For ActiveRecord::Fixtures
+  # gem 'activerecord', RAILS_VERSION, :require => 'active_record'
+  # gem 'sqlite3'
 end
