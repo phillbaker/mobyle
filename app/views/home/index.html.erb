@@ -1,12 +1,13 @@
 <h1>iHub</h1>
 <h2>Home</h2>
-<% if current_user != nil && user_signed_in? %>
-	<% if current_user.hubs.size > 0 %>
-		<% @user = current_user; @hubs = current_user.hubs %>
-		<%= render :template => 'hubs/index' %>
+<% if @user %>
+	<% if @hubs %>
+		<h3>Your hubs</h3>
+		<%= render 'hubs/listing' %>
 	<% else %>
 		You don't have any hubs, why don't you <a href="<%= new_user_hub_path(current_user) %>">make some hubs</a>!
 	<% end %>
 <% else %>
 	Welcome, create an account!
 <% end %>
+<br />
