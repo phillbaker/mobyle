@@ -1,7 +1,8 @@
 class HubsController < ApplicationController
-  # GET /users/:id/hubs
+  # GET /users/:user_id/hubs
   # GET /users/:id/hubs.json
   def index
+    @user = User.get(params[:user_id])
     @hubs = Hub.all
 
     respond_to do |format|

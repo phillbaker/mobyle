@@ -1,7 +1,9 @@
 Ihub::Application.routes.draw do
   devise_for :users
   resources :users do
-    resources :hubs
+    resources :hubs do
+      resources :contacts
+    end
   end
 
   # The priority is based upon order of creation:
