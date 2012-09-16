@@ -15,7 +15,7 @@ class HubsController < ApplicationController
   # GET /users/:user_id/hubs/1.json
   def show
     @user = User.get(params[:user_id]) || not_found
-    @hub = @user.hubs.get(params[:id])
+    @hub = @user.hubs.get(params[:id]) || not_found
 
     respond_to do |format|
       format.html # show.html.erb
@@ -63,7 +63,7 @@ class HubsController < ApplicationController
   # PUT /user/:user_id/hubs/1.json
   def update
     @user = User.get(params[:user_id]) || not_found
-    @hub = @user.hubs.get(params[:id])
+    @hub = @user.hubs.get(params[:id]) || not_found
 
     respond_to do |format|
       if @hub.update(params[:hub])
