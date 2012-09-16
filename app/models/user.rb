@@ -53,4 +53,6 @@ class User
   property :created_on, Date
   property :updated_at, DateTime
   property :updated_on, Date
+  
+  has n, :hubs
 end

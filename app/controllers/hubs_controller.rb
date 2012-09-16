@@ -1,6 +1,6 @@
 class HubsController < ApplicationController
-  # GET /hubs
-  # GET /hubs.json
+  # GET /users/:id/hubs
+  # GET /users/:id/hubs.json
   def index
     @hubs = Hub.all
 
@@ -10,9 +10,10 @@ class HubsController < ApplicationController
     end
   end
 
-  # GET /hubs/1
-  # GET /hubs/1.json
+  # GET /users/:id/hubs/1
+  # GET /users/:id/hubs/1.json
   def show
+    @user = User.get(params[:user_id])
     @hub = Hub.get(params[:id])
 
     respond_to do |format|
@@ -21,9 +22,10 @@ class HubsController < ApplicationController
     end
   end
 
-  # GET /hubs/new
-  # GET /hubs/new.json
+  # GET /users/:id/hubs/new
+  # GET /users/:id/hubs/new.json
   def new
+    @user = User.get(params[:user_id])
     @hub = Hub.new
 
     respond_to do |format|
@@ -32,14 +34,16 @@ class HubsController < ApplicationController
     end
   end
 
-  # GET /hubs/1/edit
+  # GET /user/:id/hubs/1/edit
   def edit
+    @user = User.get(params[:user_id])
     @hub = Hub.get(params[:id])
   end
 
-  # POST /hubs
-  # POST /hubs.json
+  # POST /user/:id/hubs
+  # POST /user/:id/hubs.json
   def create
+    @user = User.get(params[:user_id])
     @hub = Hub.new(params[:hub])
 
     respond_to do |format|
@@ -53,9 +57,10 @@ class HubsController < ApplicationController
     end
   end
 
-  # PUT /hubs/1
-  # PUT /hubs/1.json
+  # PUT /user/:id/hubs/1
+  # PUT /user/:id/hubs/1.json
   def update
+    @user = User.get(params[:user_id])
     @hub = Hub.get(params[:id])
 
     respond_to do |format|
@@ -69,9 +74,10 @@ class HubsController < ApplicationController
     end
   end
 
-  # DELETE /hubs/1
-  # DELETE /hubs/1.json
+  # DELETE /user/:id/hubs/1
+  # DELETE /user/:id/hubs/1.json
   def destroy
+    @user = User.get(params[:user_id])
     @hub = Hub.get(params[:id])
     @hub.destroy
 
