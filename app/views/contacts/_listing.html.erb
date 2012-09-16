@@ -1,0 +1,19 @@
+<table>
+  <tr>
+		<th>Name</th>
+		<th>Telephone</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @contacts.each do |contact| %>
+  <tr>
+		<td><%= contact.name %></td>
+		<td><%= contact.telephone.to_s %></td>
+    <td><%= link_to 'Show', [contact.hub.user, contact.hub, contact] %></td>
+    <td><%= link_to 'Edit', edit_user_hub_contact_path(contact.hub.user, contact.hub, contact) %></td>
+    <td><%= link_to 'Destroy', [contact.hub.user, contact.hub, contact], :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>

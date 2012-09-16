@@ -1,20 +1,6 @@
 <h1>Listing contacts</h1>
 
-<table>
-  <tr>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @contacts.each do |contact| %>
-  <tr>
-    <td><%= link_to 'Show', contact %></td>
-    <td><%= link_to 'Edit', edit_user_hub_contact_path(contact) %></td>
-    <td><%= link_to 'Destroy', contact, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
+<%= render 'listing' %>
 
 <br />
 

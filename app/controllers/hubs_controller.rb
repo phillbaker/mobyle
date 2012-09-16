@@ -1,7 +1,7 @@
 class HubsController < ApplicationController
   # GET /users/:user_id/hubs
   # GET /users/:user_id/hubs.json
-  def index
+  def index #TODO redundant with parent#show
     @user = User.get(params[:user_id]) || not_found
     @hubs = @user.hubs
 
@@ -16,7 +16,8 @@ class HubsController < ApplicationController
   def show
     @user = User.get(params[:user_id]) || not_found
     @hub = @user.hubs.get(params[:id]) || not_found
-
+    @contacts = @hub.contacts
+    
     respond_to do |format|
       format.html # show.html.erb
       format.json { render :json => @hub }

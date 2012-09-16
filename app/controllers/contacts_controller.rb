@@ -1,7 +1,7 @@
 class ContactsController < ApplicationController
   # GET /users/:user_id/hubs/:hub_id/contacts
   # GET /users/:user_id/hubs/contacts.json
-  def index
+  def index #TODO redundant with parent#show
     @user = User.get(params[:user_id]) || not_found
     @hub = @user.hubs.get(params[:hub_id]) || not_found
     @contacts = @hub.contacts
@@ -55,7 +55,7 @@ class ContactsController < ApplicationController
 
     respond_to do |format|
       if @contact.save
-        format.html { redirect_to @contact, :notice => 'Contact was successfully created.' }
+        format.html { redirect_to [@user, @hub, @contact], :notice => 'Contact was successfully created.' }
         format.json { render :json => @contact, :status => :created, :location => @contact }
       else
         format.html { render :action => "new" }
@@ -73,7 +73,7 @@ class ContactsController < ApplicationController
 
     respond_to do |format|
       if @contact.update(params[:contact])
-        format.html { redirect_to @contact, :notice => 'Contact was successfully updated.' }
+        format.html { redirect_to [@user, @hub, @contact], :notice => 'Contact was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render :action => "edit" }
