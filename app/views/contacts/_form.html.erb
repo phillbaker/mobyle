@@ -10,7 +10,13 @@
       </ul>
     </div>
   <% end %>
-
+	<div class="field">
+		<p><%= f.label :name %></p>
+		<p><%= f.text_field :name %></p>
+		
+		<p><%= f.label :telephone %></p>
+		<p><%= f.text_field :telephone %></p>
+	</div>
   <div class="actions">
     <%= f.submit %>
   </div>

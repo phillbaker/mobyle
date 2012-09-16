@@ -1,9 +1,9 @@
 class HubsController < ApplicationController
   # GET /users/:user_id/hubs
-  # GET /users/:id/hubs.json
+  # GET /users/:user_id/hubs.json
   def index
     @user = User.get(params[:user_id])
-    @hubs = Hub.all
+    @hubs = @user.hubs
 
     respond_to do |format|
       format.html # index.html.erb
@@ -11,11 +11,11 @@ class HubsController < ApplicationController
     end
   end
 
-  # GET /users/:id/hubs/1
-  # GET /users/:id/hubs/1.json
+  # GET /users/:user_id/hubs/1
+  # GET /users/:user_id/hubs/1.json
   def show
     @user = User.get(params[:user_id])
-    @hub = Hub.get(params[:id])
+    @hub = Hub.get(params[:id]) #TODO does this need to be scope too?
 
     respond_to do |format|
       format.html # show.html.erb
@@ -23,11 +23,11 @@ class HubsController < ApplicationController
     end
   end
 
-  # GET /users/:id/hubs/new
-  # GET /users/:id/hubs/new.json
+  # GET /users/:user_id/hubs/new
+  # GET /users/:user_id/hubs/new.json
   def new
     @user = User.get(params[:user_id])
-    @hub = Hub.new
+    @hub = Hub.new(:user => @user)
 
     respond_to do |format|
       format.html # new.html.erb
@@ -35,21 +35,22 @@ class HubsController < ApplicationController
     end
   end
 
-  # GET /user/:id/hubs/1/edit
+  # GET /user/:user_id/hubs/1/edit
   def edit
     @user = User.get(params[:user_id])
     @hub = Hub.get(params[:id])
   end
 
-  # POST /user/:id/hubs
-  # POST /user/:id/hubs.json
+  # POST /user/:user_id/hubs
+  # POST /user/:user_id/hubs.json
   def create
     @user = User.get(params[:user_id])
     @hub = Hub.new(params[:hub])
+    @hub.user = @user
 
     respond_to do |format|
       if @hub.save
-        format.html { redirect_to @hub, :notice => 'Hub was successfully created.' }
+        format.html { redirect_to [@user, @hub], :notice => 'Hub was successfully created.' }
         format.json { render :json => @hub, :status => :created, :location => @hub }
       else
         format.html { render :action => "new" }
@@ -58,15 +59,15 @@ class HubsController < ApplicationController
     end
   end
 
-  # PUT /user/:id/hubs/1
-  # PUT /user/:id/hubs/1.json
+  # PUT /user/:user_id/hubs/1
+  # PUT /user/:user_id/hubs/1.json
   def update
     @user = User.get(params[:user_id])
     @hub = Hub.get(params[:id])
 
     respond_to do |format|
       if @hub.update(params[:hub])
-        format.html { redirect_to @hub, :notice => 'Hub was successfully updated.' }
+        format.html { redirect_to [@user, @hub], :notice => 'Hub was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render :action => "edit" }
@@ -75,15 +76,15 @@ class HubsController < ApplicationController
     end
   end
 
-  # DELETE /user/:id/hubs/1
-  # DELETE /user/:id/hubs/1.json
+  # DELETE /user/:user_id/hubs/1
+  # DELETE /user/:user_id/hubs/1.json
   def destroy
     @user = User.get(params[:user_id])
     @hub = Hub.get(params[:id])
     @hub.destroy
 
     respond_to do |format|
-      format.html { redirect_to hubs_url }
+      format.html { redirect_to user_hubs_url }
       format.json { head :no_content }
     end
   end

@@ -2,6 +2,7 @@
 
 <table>
   <tr>
+		<th>Name</th>
     <th></th>
     <th></th>
     <th></th>
@@ -9,9 +10,10 @@
 
 <% @hubs.each do |hub| %>
   <tr>
-    <td><%= link_to 'Show', hub %></td>
-    <td><%= link_to 'Edit', edit_hub_path(hub) %></td>
-    <td><%= link_to 'Destroy', hub, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
+		<td><%= hub.name %></td>
+    <td><%= link_to 'Show', [hub.user, hub] %></td>
+    <td><%= link_to 'Edit', edit_user_hub_path(hub.user, hub) %></td>
+    <td><%= link_to 'Destroy', [hub.user, hub], :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>
