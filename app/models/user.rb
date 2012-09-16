@@ -26,7 +26,7 @@ class User
   property :last_sign_in_ip,    String
 
   ## Encryptable
-  # property :password_salt, String
+  property :password_salt, String
 
   ## Confirmable
   # property :confirmation_token,   String
@@ -46,7 +46,6 @@ class User
   # property :invitation_token, String, :length => 255
 
   property :name, String
-  property :email, String
 
   #TODO why aren't these default?
   property :id, Serial
