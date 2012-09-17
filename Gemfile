@@ -24,8 +24,9 @@ gem 'dm-observer',     DM_VERSION
 gem 'dm-serializer',     '~> 1.2.0'
 gem 'dm-devise',         '~> 2.1.0'
 
+gem 'cancan'
 
-# Gems used only for assets and not required
+# Gems used only for asset compliation and not required
 # in production environments by default.
 group :assets do
   # gem 'sass-rails',   '~> 3.2.5'
