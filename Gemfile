@@ -10,21 +10,23 @@ gem 'activeresource', RAILS_VERSION, :require => 'active_resource'
 gem 'railties',       RAILS_VERSION, :require => 'rails'
 gem 'tzinfo',         '~> 0.3.32'
 
-gem 'dm-rails',               '~> 1.2.1'
-gem 'dm-sqlite-adapter', DM_VERSION
-gem 'dm-migrations',   DM_VERSION
-gem 'dm-types',        DM_VERSION
-gem 'dm-validations',  DM_VERSION
-gem 'dm-constraints',  DM_VERSION
-gem 'dm-transactions', DM_VERSION
-gem 'dm-aggregates',   DM_VERSION
-gem 'dm-timestamps',   DM_VERSION
-gem 'dm-observer',     DM_VERSION
+gem 'dm-core',            '~> 1.2.0'
+gem 'dm-rails',           '~> 1.2.1'
+gem 'dm-sqlite-adapter',  DM_VERSION
+gem 'dm-migrations',      DM_VERSION
+gem 'dm-types',           DM_VERSION
+gem 'dm-validations',     DM_VERSION
+gem 'dm-constraints',     DM_VERSION
+gem 'dm-transactions',    DM_VERSION
+gem 'dm-aggregates',      DM_VERSION
+gem 'dm-timestamps',      DM_VERSION
+gem 'dm-observer',        DM_VERSION
 
 gem 'dm-serializer',     '~> 1.2.0'
 gem 'dm-devise',         '~> 2.1.0'
 
 gem 'cancan'
+gem 'simple_form'
 
 # Gems used only for asset compliation and not required
 # in production environments by default.
