@@ -1,4 +1,6 @@
 class ContactsController < ApplicationController
+  authorize_resource
+  
   # GET /users/:user_id/hubs/:hub_id/contacts
   # GET /users/:user_id/hubs/contacts.json
   def index #TODO redundant with parent#show

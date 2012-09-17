@@ -1,4 +1,6 @@
 class HubsController < ApplicationController
+  authorize_resource
+  
   # GET /users/:user_id/hubs
   # GET /users/:user_id/hubs.json
   def index #TODO redundant with parent#show
