@@ -3,6 +3,8 @@ class ApplicationController < ActionController::Base
   use Rails::DataMapper::Middleware::IdentityMap
   protect_from_forgery
   
+  before_filter :authenticate_user!
+  
   def not_found
     raise ActionController::RoutingError.new('Not Found')
   end
