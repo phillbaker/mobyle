@@ -1,23 +1,6 @@
-<%= form_for([@user, @hub, @contact]) do |f| %>
-  <% if @contact.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@contact.errors.count, "error") %> prohibited this contact from being saved:</h2>
-
-      <ul>
-      <% @contact.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-	<div class="field">
-		<p><%= f.label :name %></p>
-		<p><%= f.text_field :name %></p>
-		
-		<p><%= f.label :telephone %></p>
-		<p><%= f.text_field :telephone %></p>
-	</div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+<%= simple_form_for([@user, @hub, @contact], :html => { :class => 'form-horizontal' }) do |f| %>
+	<%= f.input :name %>
+	<%= f.input :telephone %>
+	
+	<%= f.button :submit %>
 <% end %>

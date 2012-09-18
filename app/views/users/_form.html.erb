@@ -1,40 +1,14 @@
-<%= form_for(@user) do |f| %>
-  <% if @user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
-
-      <ul>
-      <% @user.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-		<p><%= f.label :name %></p>
-		<p><%= f.text_field :name %></p>
-
-		<p><%= f.label :email %></p>
-		<p><%= f.text_field :email %></p>
+<%= simple_form_for(@user, :html => { :class => 'form-horizontal' }) do |f| %>
 	
-		<p>
-			<%= f.label :password %> 
-			<% if(!@user.encrypted_password.blank?) # existing user %> 
-				<i>(leave blank if you don't want to change it)</i>
-			<% end %>
-		</p>
-		<p><%= f.password_field :password %></p>
+	<%= f.input :name %>
+	<%= f.input :email %>
+	<%= f.input :password, :hint => (!@user.encrypted_password.blank? ? 'leave blank if you don\'t want to change it' : '') %>
+	<%= f.input :password_confirmation %>
+	
+	<% if(!@user.encrypted_password.blank?) # existing user %>
+		<%= f.input :current_password, :hint => 'we need your current password to confirm your changes' %>
+	<% end %>
+	
+	<%= f.button :submit %>
 
-		<p><%= f.label :password_confirmation %></p>
-		<p><%= f.password_field :password_confirmation %></p>
-
-		<% if(!@user.encrypted_password.blank?) # existing user %>
-			<p><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i></p>
-			<p><%= f.password_field :current_password %></p>
-		<% end %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
 <% end %>

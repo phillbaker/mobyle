@@ -1,20 +1,4 @@
-<%= form_for([@user, @hub]) do |f| %>
-  <% if @hub.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@hub.errors.count, "error") %> prohibited this hub from being saved:</h2>
-
-      <ul>
-      <% @hub.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-	<div class="field">
-		<p><%= f.label :name %></p>
-		<p><%= f.text_field :name %></p>
-	</div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+<%= simple_form_for([@user, @hub], :html => { :class => 'form-horizontal' }) do |f| %>
+	<%= f.input :name %>
+	<%= f.button :submit %>
 <% end %>
