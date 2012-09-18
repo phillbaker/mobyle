@@ -9,6 +9,8 @@
 		<%= f.input :current_password, :hint => 'we need your current password to confirm your changes' %>
 	<% end %>
 	
-	<%= f.button :submit %>
+	<div class="form-actions">
+		<%= f.button :submit, :class => 'btn-primary' %>
+	</div>
 
 <% end %>

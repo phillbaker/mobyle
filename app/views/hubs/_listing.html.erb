@@ -1,17 +1,20 @@
-<table>
-  <tr>
-		<th>Name</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @hubs.each do |hub| %>
+<table class="table table-striped">
+	<thead>
+	  <tr>
+			<th>Name</th>
+	    <th></th>
+	    <th></th>
+	    <th></th>
+	  </tr>
+	</thead>
+	<tbody>
+	<% @hubs.each do |hub| %>
   <tr>
 		<td><%= hub.name %></td>
     <td><%= link_to 'Show', [hub.user, hub] %></td>
-    <td><%= link_to 'Edit', edit_user_hub_path(hub.user, hub) %></td>
-    <td><%= link_to 'Destroy', [hub.user, hub], :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
+    <td><%= link_to 'Edit', edit_user_hub_path(hub.user, hub), :class => 'btn' %></td>
+    <td><%= link_to 'Destroy', [hub.user, hub], :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-danger' %></td>
   </tr>
-<% end %>
+	<% end %>
+	</tbody>
 </table>

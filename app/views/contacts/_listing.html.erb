@@ -1,4 +1,4 @@
-<table>
+<table class="table table-striped">
   <tr>
 		<th>Name</th>
 		<th>Telephone</th>
@@ -11,9 +11,9 @@
   <tr>
 		<td><%= contact.name %></td>
 		<td><%= contact.telephone.to_s %></td>
-    <td><%= link_to 'Show', [contact.hub.user, contact.hub, contact] %></td>
-    <td><%= link_to 'Edit', edit_user_hub_contact_path(contact.hub.user, contact.hub, contact) %></td>
-    <td><%= link_to 'Destroy', [contact.hub.user, contact.hub, contact], :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
+    <td><%= link_to 'Details', [contact.hub.user, contact.hub, contact] %></td>
+    <td><%= link_to 'Edit', edit_user_hub_contact_path(contact.hub.user, contact.hub, contact), :class => 'btn' %></td>
+    <td><%= link_to 'Destroy', [contact.hub.user, contact.hub, contact], :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-danger' %></td>
   </tr>
 <% end %>
 </table>
