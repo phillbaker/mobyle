@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  load_and_authorize_resource  
+  load_and_authorize_resource
   
   # GET /users
   # GET /users.json
@@ -13,7 +13,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    not_found unless @user
+    # not_found unless @user
     # @user = User.get(params[:id]) || not_found
     # authorize! :show, @user
     
@@ -36,7 +36,7 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
-    not_found unless @user
+    # not_found unless @user
     # @user = User.get(params[:id]) || not_found
   end
 
@@ -59,7 +59,7 @@ class UsersController < ApplicationController
   # PUT /users/1
   # PUT /users/1.json
   def update
-    not_found unless @user
+    # not_found unless @user
     # @user = User.get(params[:id]) || not_found
 
     respond_to do |format|
@@ -76,7 +76,7 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
-    not_found unless @user
+    # not_found unless @user
     # @user = User.get(params[:id]) || not_found
     @user.destroy
 

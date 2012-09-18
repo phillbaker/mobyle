@@ -1,11 +1,12 @@
 class HubsController < ApplicationController
-  authorize_resource
+  load_and_authorize_resource :user
+  load_and_authorize_resource :hub, :through => :user
   
   # GET /users/:user_id/hubs
   # GET /users/:user_id/hubs.json
   def index #TODO redundant with parent#show
-    @user = User.get(params[:user_id]) || not_found
-    @hubs = @user.hubs
+    #@user = User.get(params[:user_id]) || not_found
+    #@hubs = @user.hubs
 
     respond_to do |format|
       format.html # index.html.erb
@@ -16,8 +17,8 @@ class HubsController < ApplicationController
   # GET /users/:user_id/hubs/1
   # GET /users/:user_id/hubs/1.json
   def show
-    @user = User.get(params[:user_id]) || not_found
-    @hub = @user.hubs.get(params[:id]) || not_found
+    # @user = User.get(params[:user_id]) || not_found
+    # @hub = @user.hubs.get(params[:id]) || not_found
     @contacts = @hub.contacts
     
     respond_to do |format|
@@ -29,8 +30,8 @@ class HubsController < ApplicationController
   # GET /users/:user_id/hubs/new
   # GET /users/:user_id/hubs/new.json
   def new
-    @user = User.get(params[:user_id]) || not_found
-    @hub = Hub.new(:user => @user)
+    # @user = User.get(params[:user_id]) || not_found
+    # @hub = Hub.new(:user => @user)
 
     respond_to do |format|
       format.html # new.html.erb
@@ -40,15 +41,15 @@ class HubsController < ApplicationController
 
   # GET /user/:user_id/hubs/1/edit
   def edit
-    @user = User.get(params[:user_id]) || not_found
-    @hub = @user.hubs.get(params[:id]) || not_found
+    # @user = User.get(params[:user_id]) || not_found
+    # @hub = @user.hubs.get(params[:id]) || not_found
   end
 
   # POST /user/:user_id/hubs
   # POST /user/:user_id/hubs.json
   def create
-    @user = User.get(params[:user_id]) || not_found
-    @hub = Hub.new(params[:hub])
+    # @user = User.get(params[:user_id]) || not_found
+    # @hub = Hub.new(params[:hub])
     @hub.user = @user
 
     respond_to do |format|
@@ -65,8 +66,8 @@ class HubsController < ApplicationController
   # PUT /user/:user_id/hubs/1
   # PUT /user/:user_id/hubs/1.json
   def update
-    @user = User.get(params[:user_id]) || not_found
-    @hub = @user.hubs.get(params[:id]) || not_found
+    # @user = User.get(params[:user_id]) || not_found
+    # @hub = @user.hubs.get(params[:id]) || not_found
 
     respond_to do |format|
       if @hub.update(params[:hub])
@@ -82,8 +83,8 @@ class HubsController < ApplicationController
   # DELETE /user/:user_id/hubs/1
   # DELETE /user/:user_id/hubs/1.json
   def destroy
-    @user = User.get(params[:user_id]) || not_found
-    @hub = @user.hubs.get(params[:id]) || not_found
+    # @user = User.get(params[:user_id]) || not_found
+    # @hub = @user.hubs.get(params[:id]) || not_found
     @hub.destroy
 
     respond_to do |format|
