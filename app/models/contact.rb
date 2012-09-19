@@ -5,5 +5,5 @@ class Contact
   property :name, String
   property :telephone, Integer
   
-  belongs_to :hub
+  belongs_to :group
 end

@@ -5,5 +5,5 @@ class Hub
   property :name, String
   
   belongs_to :user
-  has n, :contacts
+  has n, :groups
 end
