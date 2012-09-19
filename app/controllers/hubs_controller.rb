@@ -18,7 +18,7 @@ class HubsController < ApplicationController
   def show
     # @user = User.get(params[:user_id]) || not_found
     # @hub = @user.hubs.get(params[:id]) || not_found
-    @contacts = @hub.contacts
+    @groups = @hub.groups
     
     respond_to do |format|
       format.html # show.html.erb
@@ -49,11 +49,11 @@ class HubsController < ApplicationController
   def create
     # @user = User.get(params[:user_id]) || not_found
     # @hub = Hub.new(params[:hub])
-    @hub.user = @user
+    @hub.user = current_user()
 
     respond_to do |format|
       if @hub.save
-        format.html { redirect_to [@user, @hub], :notice => 'Hub was successfully created.' }
+        format.html { redirect_to @hub, :notice => 'Hub was successfully created.' }
         format.json { render :json => @hub, :status => :created, :location => @hub }
       else
         format.html { render :action => "new" }
@@ -70,7 +70,7 @@ class HubsController < ApplicationController
 
     respond_to do |format|
       if @hub.update(params[:hub])
-        format.html { redirect_to [@user, @hub], :notice => 'Hub was successfully updated.' }
+        format.html { redirect_to @hub, :notice => 'Hub was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render :action => "edit" }
@@ -87,7 +87,7 @@ class HubsController < ApplicationController
     @hub.destroy
 
     respond_to do |format|
-      format.html { redirect_to user_hubs_url }
+      format.html { redirect_to hubs_url }
       format.json { head :no_content }
     end
   end

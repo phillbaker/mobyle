@@ -1,0 +1,17 @@
+<table class="table table-striped">
+  <tr>
+		<th>Name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @groups.each do |group| %>
+  <tr>
+		<td><%= group.name %></td>
+    <td><%= link_to 'Details', [group.hub, group] %></td>
+    <td><%= link_to 'Edit', edit_hub_group_path(group.hub, group), :class => 'btn' %></td>
+    <td><%= link_to 'Destroy', [group.hub, group], :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-danger' %></td>
+  </tr>
+<% end %>
+</table>

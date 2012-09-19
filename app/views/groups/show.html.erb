@@ -1,5 +1,12 @@
-<p id="notice"><%= notice %></p>
+<p>
+  <b>Name:</b>
+  <%= @group.name %>
+</p>
+
+<%= render 'contacts/listing' %>
+<%= link_to 'New Contact', new_hub_group_contact_path(@hub, @group) %>
+<br />
 
 
-<%= link_to 'Edit', edit_group_path(@group) %> |
-<%= link_to 'Back', groups_path %>
+<%= link_to 'Edit', edit_hub_group_path(@group) %> |
+<%= link_to 'Back', hub_groups_path(@hub) %>

@@ -3,9 +3,9 @@
   <%= @hub.name %>
 </p>
 
-<%= render 'contacts/listing' %>
-<%= link_to 'New Contact', new_user_hub_contact_path(@user, @hub) %>
+<%= render 'groups/listing' %>
+<%= link_to 'New Group', new_hub_group_path(@hub) %>
 <br />
 
-<%= link_to 'Edit', edit_user_hub_path(@user) %> |
-<%= link_to 'Back', user_hubs_path %>
+<%= link_to 'Edit', edit_hub_path(@hub) %> |
+<%= link_to 'Back', hubs_path %>

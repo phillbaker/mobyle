@@ -8,7 +8,8 @@ class Ability
     # else
       can :manage, User, :id => user.id
       can :manage, Hub, :user_id => user.id
-      can :manage, Contact, :hub => { :user_id => user.id }
+      can :manage, Group, :hub => { :user_id => user.id }
+      can :manage, Contact, :group => { :hub => { :user_id => user.id } }
     # end
     
     # Define abilities for the passed in user here. For example:

@@ -1,6 +1,10 @@
-<%= simple_form_for([@user, @hub, @contact], :html => { :class => 'form-horizontal' }) do |f| %>
-	<%= f.input :name %>
-	<%= f.input :telephone %>
+<%= simple_form_for([@hub, @group, @contact], :html => { :class => 'form-horizontal' }) do |f| %>
+	<%= f.error_notification %>
+
+	<div class="form-inputs">
+		<%= f.input :name %>
+		<%= f.input :telephone %>
+	</div>
 	
 	<div class="form-actions">
 		<%= f.button :submit, :class => 'btn-primary' %>

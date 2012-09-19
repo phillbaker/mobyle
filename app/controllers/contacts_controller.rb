@@ -8,7 +8,7 @@ class ContactsController < ApplicationController
   def index #TODO redundant with parent#show
     # @user = User.get(params[:user_id]) || not_found
     # @hub = @user.hubs.get(params[:hub_id]) || not_found
-    @contacts = @hub.contacts
+    @contacts = @group.contacts
 
     respond_to do |format|
       format.html # index.html.erb
@@ -55,11 +55,11 @@ class ContactsController < ApplicationController
     # @user = User.get(params[:user_id]) || not_found
     # @hub = @user.hubs.get(params[:hub_id]) || not_found
     # @contact = Contact.new(params[:contact])
-    @contact.hub = @hub
+    @contact.group = @group
 
     respond_to do |format|
       if @contact.save
-        format.html { redirect_to [@user, @hub, @contact], :notice => 'Contact was successfully created.' }
+        format.html { redirect_to [@hub, @group, @contact], :notice => 'Contact was successfully created.' }
         format.json { render :json => @contact, :status => :created, :location => @contact }
       else
         format.html { render :action => "new" }
@@ -77,7 +77,7 @@ class ContactsController < ApplicationController
 
     respond_to do |format|
       if @contact.update(params[:contact])
-        format.html { redirect_to [@user, @hub, @contact], :notice => 'Contact was successfully updated.' }
+        format.html { redirect_to [@hub, @group, @contact], :notice => 'Contact was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render :action => "edit" }
@@ -95,7 +95,7 @@ class ContactsController < ApplicationController
     @contact.destroy
 
     respond_to do |format|
-      format.html { redirect_to user_hub_contacts_url }
+      format.html { redirect_to hub_group_contacts_url }
       format.json { head :no_content }
     end
   end

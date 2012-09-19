@@ -1,13 +1,16 @@
 <%= simple_form_for(@user, :html => { :class => 'form-horizontal' }) do |f| %>
+	<%= f.error_notification %>
+
+	<div class="form-inputs">
+		<%= f.input :name %>
+		<%= f.input :email %>
+		<%= f.input :password, :hint => (!@user.encrypted_password.blank? ? 'leave blank if you don\'t want to change it' : '') %>
+		<%= f.input :password_confirmation %>
 	
-	<%= f.input :name %>
-	<%= f.input :email %>
-	<%= f.input :password, :hint => (!@user.encrypted_password.blank? ? 'leave blank if you don\'t want to change it' : '') %>
-	<%= f.input :password_confirmation %>
-	
-	<% if(!@user.encrypted_password.blank?) # existing user %>
-		<%= f.input :current_password, :hint => 'we need your current password to confirm your changes' %>
-	<% end %>
+		<% if(!@user.encrypted_password.blank?) # existing user %>
+			<%= f.input :current_password, :hint => 'we need your current password to confirm your changes' %>
+		<% end %>
+	</div>
 	
 	<div class="form-actions">
 		<%= f.button :submit, :class => 'btn-primary' %>

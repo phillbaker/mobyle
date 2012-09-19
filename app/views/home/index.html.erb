@@ -4,7 +4,7 @@
 		<h3>Your hubs</h3>
 		<%= render 'hubs/listing' %>
 	<% else %>
-		You don't have any hubs, why don't you <a href="<%= new_user_hub_path(current_user) %>">make some hubs</a>!
+		You don't have any hubs, why don't you <a href="<%= new_hub_path %>">make some hubs</a>!
 	<% end %>
 <% else %>
 	Welcome, create an account!
