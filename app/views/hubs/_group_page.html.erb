@@ -1,0 +1,5 @@
+<ul data-role="listview" data-inset="true" data-filter="true" data-filter-placeholder="Search people..." data-autodividers="true">
+	<% group.contacts.each do |contact| %>
+		<li><a href="tel:+<%= contact.telephone %>"><%= contact.name %></a></li>
+	<% end %>
+</ul>

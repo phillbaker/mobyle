@@ -27,12 +27,12 @@
 	</head>
 	<body>
 	
-		<%= render 'jqm_page' %>
+		<%# Do the hub categories top level page :object => @hub%>
+		<%= render :partial => 'hub_page', :layout => 'jqm_page', :locals => { :page => @hub, :type => 'hub' } %>
 		
-				
-		<%= @hub.name %>
+		<%# Do the individual categories pages%>		
 		<% @groups.each do |group| %>
-			<%= group.name %>
+			<%= render :partial => 'group_page', :layout => 'jqm_page', :locals => { :page => group, :type => 'group', :group => group } %>
 		<% end %>
 	
 		<%#TODO <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>

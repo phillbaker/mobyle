@@ -1,0 +1,5 @@
+<ul data-role="listview" data-inset="true">
+	<% @hub.groups.each do |group| %>
+		<li><a href="#group-<%= group.id %>"><%= group.name %></a></li>
+	<% end %>
+</ul>
