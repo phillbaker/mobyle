@@ -1,7 +1,7 @@
 class ContactsController < ApplicationController
-  load_and_authorize_resource :user
-  load_and_authorize_resource :hub, :through => :user
-  load_and_authorize_resource :contact, :through => :hub
+  load_and_authorize_resource :hub, :through => :current_user
+  load_and_authorize_resource :group, :through => :hub
+  load_and_authorize_resource :contact, :through => :group
   
   # GET /users/:user_id/hubs/:hub_id/contacts
   # GET /users/:user_id/hubs/contacts.json

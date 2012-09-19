@@ -1,8 +1,11 @@
 class GroupsController < ApplicationController
-  # GET /groups
-  # GET /groups.json
+  load_and_authorize_resource :hub, :through => :current_user
+  load_and_authorize_resource :group, :through => :hub
+  
+  # GET /hubs/:hub_id/groups
+  # GET /hubs/:hub_id/groups.json
   def index
-    @groups = Group.all
+    # @groups = Group.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -10,10 +13,10 @@ class GroupsController < ApplicationController
     end
   end
 
-  # GET /groups/1
-  # GET /groups/1.json
+  # GET /hubs/:hub_id/groups/1
+  # GET /hubs/:hub_id/groups/1.json
   def show
-    @group = Group.get(params[:id])
+    # @group = Group.get(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -21,10 +24,10 @@ class GroupsController < ApplicationController
     end
   end
 
-  # GET /groups/new
-  # GET /groups/new.json
+  # GET /hubs/:hub_id/groups/new
+  # GET /hubs/:hub_id/groups/new.json
   def new
-    @group = Group.new
+    # @group = Group.new(:hub => @hub)
 
     respond_to do |format|
       format.html # new.html.erb
@@ -32,15 +35,16 @@ class GroupsController < ApplicationController
     end
   end
 
-  # GET /groups/1/edit
+  # GET /hubs/:hub_id/groups/1/edit
   def edit
-    @group = Group.get(params[:id])
+    # @group = @hub.groups.get(params[:id])
   end
 
-  # POST /groups
-  # POST /groups.json
+  # POST /hubs/:hub_id/groups
+  # POST /hubs/:hub_id/groups.json
   def create
-    @group = Group.new(params[:group])
+    # @group = Group.new(params[:group])
+    @group.hub = @hub
 
     respond_to do |format|
       if @group.save
@@ -53,10 +57,10 @@ class GroupsController < ApplicationController
     end
   end
 
-  # PUT /groups/1
-  # PUT /groups/1.json
+  # PUT /hubs/:hub_id/groups/1
+  # PUT /hubs/:hub_id/groups/1.json
   def update
-    @group = Group.get(params[:id])
+    # @group = @hub.groups.get(params[:id])
 
     respond_to do |format|
       if @group.update(params[:group])
@@ -69,10 +73,10 @@ class GroupsController < ApplicationController
     end
   end
 
-  # DELETE /groups/1
-  # DELETE /groups/1.json
+  # DELETE /hubs/:hub_id/groups/1
+  # DELETE /hubs/:hub_id/groups/1.json
   def destroy
-    @group = Group.get(params[:id])
+    # @group = @hub.groups.get(params[:id])
     @group.destroy
 
     respond_to do |format|

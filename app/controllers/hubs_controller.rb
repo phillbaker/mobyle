@@ -1,9 +1,8 @@
 class HubsController < ApplicationController
-  load_and_authorize_resource :user
-  load_and_authorize_resource :hub, :through => :user
+  load_and_authorize_resource :hub, :through => :current_user
   
-  # GET /users/:user_id/hubs
-  # GET /users/:user_id/hubs.json
+  # GET /hubs
+  # GET /hubs.json
   def index #TODO redundant with parent#show
     #@user = User.get(params[:user_id]) || not_found
     #@hubs = @user.hubs
@@ -14,8 +13,8 @@ class HubsController < ApplicationController
     end
   end
 
-  # GET /users/:user_id/hubs/1
-  # GET /users/:user_id/hubs/1.json
+  # GET /hubs/1
+  # GET /hubs/1.json
   def show
     # @user = User.get(params[:user_id]) || not_found
     # @hub = @user.hubs.get(params[:id]) || not_found
@@ -27,8 +26,8 @@ class HubsController < ApplicationController
     end
   end
 
-  # GET /users/:user_id/hubs/new
-  # GET /users/:user_id/hubs/new.json
+  # GET /hubs/new
+  # GET /hubs/new.json
   def new
     # @user = User.get(params[:user_id]) || not_found
     # @hub = Hub.new(:user => @user)
@@ -39,14 +38,14 @@ class HubsController < ApplicationController
     end
   end
 
-  # GET /user/:user_id/hubs/1/edit
+  # GET /hubs/1/edit
   def edit
     # @user = User.get(params[:user_id]) || not_found
     # @hub = @user.hubs.get(params[:id]) || not_found
   end
 
-  # POST /user/:user_id/hubs
-  # POST /user/:user_id/hubs.json
+  # POST /hubs
+  # POST /hubs.json
   def create
     # @user = User.get(params[:user_id]) || not_found
     # @hub = Hub.new(params[:hub])
@@ -63,8 +62,8 @@ class HubsController < ApplicationController
     end
   end
 
-  # PUT /user/:user_id/hubs/1
-  # PUT /user/:user_id/hubs/1.json
+  # PUT /hubs/1
+  # PUT /hubs/1.json
   def update
     # @user = User.get(params[:user_id]) || not_found
     # @hub = @user.hubs.get(params[:id]) || not_found
@@ -80,8 +79,8 @@ class HubsController < ApplicationController
     end
   end
 
-  # DELETE /user/:user_id/hubs/1
-  # DELETE /user/:user_id/hubs/1.json
+  # DELETE /hubs/1
+  # DELETE /hubs/1.json
   def destroy
     # @user = User.get(params[:user_id]) || not_found
     # @hub = @user.hubs.get(params[:id]) || not_found
