@@ -91,4 +91,15 @@ class HubsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  # GET /hubs/1/mobile
+  def mobile
+    @groups = @hub.groups
+    
+    respond_to do |format|
+      format.html do
+        render :layout => false # mobile.html.erb
+      end 
+    end
+  end
 end

@@ -3,6 +3,10 @@ Ihub::Application.routes.draw do
     resources :groups do
       resources :contacts
     end
+    
+    member do
+      get 'mobile'
+    end
   end
 
   devise_for :users
