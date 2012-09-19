@@ -39,6 +39,7 @@ group :assets do
 end
 
 gem 'jquery-rails', '~> 2.0.1'
+gem 'jquery_mobile_rails'
 gem 'less-rails-bootstrap'
 
 # To use ActiveModel has_secure_password
