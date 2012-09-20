@@ -1,6 +1,9 @@
 <div data-role="page" id="<%= type %>-<%= page.id %>">
 	<div data-role="header">
 		<h1><%= page.name %></h1>
+		<% if defined? back %>
+			<a href="index.php" data-icon="arrow-l" data-rel="back"><%= back %></a>
+		<% end %>
 	</div>
 	
 	<div data-role="content">
