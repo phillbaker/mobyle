@@ -1,17 +1,29 @@
 <table class="table table-striped">
   <tr>
-		<th>Name</th>
+		<th>Group Name</th>
     <th></th>
     <th></th>
-    <th></th>
+    <th><%= link_to 'New group', new_hub_group_path(@hub), :class => 'btn pull-right' %></th>
   </tr>
 
 <% @groups.each do |group| %>
   <tr>
-		<td><%= group.name %></td>
-    <td><%= link_to 'Details', [group.hub, group] %></td>
+		<td><%= link_to group.name, [group.hub, group] %></td>
+    <td></td>
     <td><%= link_to 'Edit', edit_hub_group_path(group.hub, group), :class => 'btn' %></td>
     <td><%= link_to 'Destroy!', [group.hub, group], :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-danger' %></td>
   </tr>
+<% end %>
+<% if @groups == nil || @groups.size == 0 %>
+	<tr>
+		<td>No groups yet! :(. It's okay, you can <%= link_to 'make a group', new_hub_group_path(@hub) %></td>
+	</tr>
+	<%# add in another row to get the offsetting zebra stripe, make it look balanced %>
+	<tr>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
 <% end %>
 </table>

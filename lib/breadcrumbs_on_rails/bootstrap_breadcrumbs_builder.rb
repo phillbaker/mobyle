@@ -1,3 +1,5 @@
+# https://gist.github.com/2369079
+# 
 # The BootstrapBreadcrumbsBuilder is a Bootstrap compatible breadcrumb builder.
 # It provides basic functionalities to render a breadcrumb navigation according to Bootstrap's conventions.
 #
