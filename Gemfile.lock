@@ -57,6 +57,10 @@ GEM
       orm_adapter (~> 0.1)
       railties (~> 3.1)
       warden (~> 1.2.1)
+    devise_invitable (1.1.0)
+      actionmailer (~> 3.0)
+      devise (>= 2.1.0)
+      railties (~> 3.0)
     dm-active_model (1.2.1)
       activemodel (~> 3.0)
       dm-core (~> 1.2.0)
@@ -219,6 +223,7 @@ DEPENDENCIES
   cancan
   capistrano (~> 2.11.2)
   coffee-rails (~> 3.2.2)
+  devise_invitable
   dm-aggregates (~> 1.2.0)
   dm-constraints (~> 1.2.0)
   dm-core (~> 1.2.0)
