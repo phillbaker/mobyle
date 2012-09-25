@@ -4,7 +4,7 @@ class User
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
-  devise :invitable, :database_authenticatable, :registerable,
+  devise :database_authenticatable, :registerable, #:invitable, (not dm-compatible)
          :recoverable, :rememberable, :trackable, :validatable
 
   ## Database authenticatable
@@ -26,7 +26,7 @@ class User
   property :last_sign_in_ip,    String
 
   ## Encryptable
-  property :password_salt, String
+  property :password_salt, String#, :null => true
 
   ## Confirmable
   # property :confirmation_token,   String
@@ -43,7 +43,12 @@ class User
   # property :authentication_token, String, :length => 255
 
   ## Invitable
-  # property :invitation_token, String, :length => 255
+  property :invitation_token, String, :length => 255
+  property :invitation_sent_at, DateTime
+  property :invitation_accepted_at, DateTime
+  property :invitation_limit, Integer
+  property :invited_by_id, Integer
+  property :invited_by_type, String
 
   property :name, String
 
@@ -55,4 +60,8 @@ class User
   property :updated_on, Date
   
   has n, :hubs
+  
+  # def active?
+  #   
+  # end
 end
