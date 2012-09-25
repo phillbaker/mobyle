@@ -1,4 +1,4 @@
-<% if @user %>
+<% if current_user %>
 	<h2>Hello again!</h2>
 	<% if @hubs %>
 		<h3>Your hubs</h3>
@@ -33,12 +33,25 @@
 		</div>
 	</div>
 	<div class="row well">
-		<div class="span6">
+		<div class="span5">
 			<p>We're super geeks, but we're not Superman. To make sure that everyone who's signing up for our site has a great experience off of the bat, we inviting people to join on a rolling basis as we have resources. If you give us your e-mail, we'll let you know when your slot is ready and give you first opportunity to claim that spot.</p>
-			<p>(Absolutely no spam. Promise.)</p>
 		</div>
-		<div class="span6">
+		<div class="span5 offset1">
 			<%#= render 'devise/registrations/email_capture' %>
+			<%= simple_form_for(@user, :html => { :class => 'form-inline' }) do |f| %>
+				<label style="display: <%= "#{@user.errors.any? ? 'none' : 'block'}" %>;">Launching soon.</label>
+
+				<% if @user.errors.any? %>
+				<div class="alert alert-error">Please enter a valid email</div>
+				<% end %>
+
+				<div class="input-prepend"><span class="add-on"><i class="icon-envelope"></i></span>
+				<%= f.text_field :email, :placeholder => 'Your email address...' %>
+				</div>
+				<%= f.submit "Notify Me", :class => "btn btn-primary", :id => 'invitation_button' %>
+				<p class="help-block">Absolutely no spam. Promise.</p>
+				
+			<% end %>
 		</div>
   </div>
 <% end %>

@@ -61,7 +61,4 @@ class User
   
   has n, :hubs
   
-  # def active?
-  #   
-  # end
 end
