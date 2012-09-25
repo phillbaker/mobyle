@@ -17,7 +17,10 @@ class ApplicationController < ActionController::Base
   
   before_filter :authenticate_user!
   check_authorization :unless => :devise_controller?
-  
+  # add_breadcrumb "Home", :root_path
+  # before_filter do |controller|
+  #   @breadcrumbs = [{ :name => 'Home', :link => '/'}]
+  # end
   
   def not_found
     raise ActionController::RoutingError.new('Not Found')

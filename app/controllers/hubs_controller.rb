@@ -1,9 +1,14 @@
 class HubsController < ApplicationController
   load_and_authorize_resource :hub, :through => :current_user
   
+  # before_filter do |controller|
+  #   @breadcrumbs = [{ :name => 'All hubs', :link => hubs_path }]
+  # end
+  
   # GET /hubs
   # GET /hubs.json
-  def index #TODO redundant with parent#show
+  def index #TODO redundant with home
+    add_breadcrumb "Hubs", :hubs_path
     #@user = User.get(params[:user_id]) || not_found
     #@hubs = @user.hubs
 
@@ -16,6 +21,8 @@ class HubsController < ApplicationController
   # GET /hubs/1
   # GET /hubs/1.json
   def show
+    add_breadcrumb "Hubs", :hubs_path
+    add_breadcrumb @hub.name, hub_path(@hub)
     # @user = User.get(params[:user_id]) || not_found
     # @hub = @user.hubs.get(params[:id]) || not_found
     @groups = @hub.groups

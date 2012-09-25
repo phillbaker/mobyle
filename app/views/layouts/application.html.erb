@@ -29,24 +29,33 @@
 	  <!--[if lt IE 7]>
 	      <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
 	  <![endif]-->
-	
+		<header>
+			<div class="navbar">
+		    <div class="navbar-inner">
+			    <a class="brand" href="/">iHub</a>
+			    <ul class="nav">
+				    <li class="divider-vertical"></li>
+						<li class="<%= 'active' if @is_home %>"><a href="/">Home</a></li>
+					</ul>
+					<ul class="nav pull-right">
+				    <%= render 'devise/registration_items' %>
+						<%= render 'devise/login_items' %>
+			    </ul>
+		    </div>
+	    </div>
+			<% unless notice.blank? %><p class="notice"><%= notice %></p><% end %>
+			<% unless alert.blank? %><p class="alert"><%= alert %></p><% end %>
+			<% unless @is_home %>
+		  <%= render_breadcrumbs :builder => ::BootstrapBreadcrumbsBuilder, :separator => '&raquo;' %>
+			<% end %>
+		</header>
 		<div id="container">
-	    <header>
-				<h1>iHub</h1>
-	    </header>
 	    <div id="main" role="main">
-				<% unless notice.blank? %><p class="notice"><%= notice %></p><% end %>
-				<% unless alert.blank? %><p class="alert"><%= alert %></p><% end %>
-				
 				<%= yield %>
-
 	    </div>
 	    <footer>
-				<% if current_user %><p>Logged in as <%= current_user.email %></p><% end %>
-				<ul>
-					<%= render 'devise/registration_items' %>
-					<%= render 'devise/login_items' %>
-				</ul>
+				<%# TODO...some cool stuff %>
+				
 	    </footer>
 	  </div>
 	

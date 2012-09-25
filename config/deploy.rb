@@ -93,7 +93,7 @@ end
 after "deploy:setup", "configuration:make_default_folders"
 after "deploy:setup", "configuration:deploy_apache_configuration"
 
-after "deploy", 'deploy:migrate' # Auto upgrade tables
+after "deploy", 'deploy:migrate' # Auto upgrade tables, for dm
 
 if use_sqlite3
   after "deploy:setup", "sqlite3:make_shared_folder"

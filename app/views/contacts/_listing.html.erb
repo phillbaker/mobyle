@@ -13,7 +13,7 @@
 		<td><%= contact.telephone.to_s %></td>
     <td><%= link_to 'Details', [contact.group.hub, contact.group, contact] %></td>
     <td><%= link_to 'Edit', edit_hub_group_contact_path(contact.group.hub, contact.group, contact), :class => 'btn' %></td>
-    <td><%= link_to 'Destroy', [contact.group.hub, contact.group, contact], :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-danger' %></td>
+    <td><%= link_to 'Destroy!', [contact.group.hub, contact.group, contact], :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-danger' %></td>
   </tr>
 <% end %>
 </table>
