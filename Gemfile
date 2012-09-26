@@ -28,7 +28,6 @@ gem 'dm-devise',         '~> 2.1.0'
 gem 'cancan'
 gem 'simple_form'
 gem 'breadcrumbs_on_rails'
-# Not dm-compatible: gem 'devise_invitable'
 
 # Gems used only for asset compliation and not required
 # in production environments by default.

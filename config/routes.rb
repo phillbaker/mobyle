@@ -9,6 +9,7 @@ Ihub::Application.routes.draw do
     end
   end
 
+  # TODO for newsletter subscription/etc. => /unsubscribe?email=pbaker%40retrodict.com&validateCode=IBZBD
   devise_for :users
   resources :users
 
