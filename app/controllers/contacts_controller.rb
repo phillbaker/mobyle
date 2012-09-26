@@ -6,8 +6,11 @@ class ContactsController < ApplicationController
   # GET /users/:user_id/hubs/:hub_id/contacts
   # GET /users/:user_id/hubs/contacts.json
   def index #TODO redundant with parent#show
-    # @user = User.get(params[:user_id]) || not_found
-    # @hub = @user.hubs.get(params[:hub_id]) || not_found
+    add_breadcrumb 'Your hubs', :hubs_path
+    add_breadcrumb @hub.name, hub_path(@hub)
+    add_breadcrumb @group.name, hub_group_path(@hub, @group)
+    add_breadcrumb 'Contacts', hub_group_contacts_path(@hub, @group)
+    
     @contacts = @group.contacts
 
     respond_to do |format|
@@ -19,9 +22,10 @@ class ContactsController < ApplicationController
   # GET /users/:user_id/hubs/contacts/1
   # GET /users/:user_id/hubs/contacts/1.json
   def show
-    # @user = User.get(params[:user_id]) || not_found
-    # @hub = @user.hubs.get(params[:hub_id]) || not_found
-    # @contact = @hub.contacts.get(params[:id]) || not_found
+    add_breadcrumb 'Your hubs', :hubs_path
+    add_breadcrumb @hub.name, hub_path(@hub)
+    add_breadcrumb @group.name, hub_group_path(@hub, @group)
+    add_breadcrumb @contact.name, hub_group_contact_path(@hub, @group, @contact)
 
     respond_to do |format|
       format.html # show.html.erb
@@ -32,9 +36,10 @@ class ContactsController < ApplicationController
   # GET /users/:user_id/hubs/contacts/new
   # GET /users/:user_id/hubs/contacts/new.json
   def new
-    # @user = User.get(params[:user_id]) || not_found
-    # @hub = @user.hubs.get(params[:hub_id]) || not_found
-    # @contact = Contact.new(:hub => @hub)
+    add_breadcrumb 'Your hubs', :hubs_path
+    add_breadcrumb @hub.name, hub_path(@hub)
+    add_breadcrumb @group.name, hub_group_path(@hub, @group)
+    add_breadcrumb 'New contact', new_hub_group_contact_path(@hub, @group)
 
     respond_to do |format|
       format.html # new.html.erb
@@ -44,17 +49,16 @@ class ContactsController < ApplicationController
 
   # GET /users/:user_id/hubs/contacts/1/edit
   def edit
-    # @user = User.get(params[:user_id]) || not_found
-    # @hub = @user.hubs.get(params[:hub_id]) || not_found
-    # @contact = @hub.contacts.get(params[:id]) || not_found
+    add_breadcrumb 'Your hubs', :hubs_path
+    add_breadcrumb @hub.name, hub_path(@hub)
+    add_breadcrumb @group.name, hub_group_path(@hub, @group)
+    add_breadcrumb @contact.name, hub_group_contact_path(@hub, @group, @contact)
+    add_breadcrumb 'Edit details', edit_hub_group_contact_path(@hub, @group, @contact)
   end
 
   # POST /users/:user_id/hubs/contacts
   # POST /users/:user_id/hubs/contacts.json
   def create
-    # @user = User.get(params[:user_id]) || not_found
-    # @hub = @user.hubs.get(params[:hub_id]) || not_found
-    # @contact = Contact.new(params[:contact])
     @contact.group = @group
 
     respond_to do |format|
@@ -71,9 +75,6 @@ class ContactsController < ApplicationController
   # PUT /users/:user_id/hubs/contacts/1
   # PUT /users/:user_id/hubs/contacts/1.json
   def update
-    # @user = User.get(params[:user_id]) || not_found
-    # @hub = @user.hubs.get(params[:hub_id]) || not_found
-    # @contact = @hub.contacts.get(params[:id]) || not_found
 
     respond_to do |format|
       if @contact.update(params[:contact])
@@ -89,9 +90,6 @@ class ContactsController < ApplicationController
   # DELETE /users/:user_id/hubs/contacts/1
   # DELETE /users/:user_id/hubs/contacts/1.json
   def destroy
-    # @user = User.get(params[:user_id]) || not_found
-    # @hub = @user.hubs.get(params[:hub_id]) || not_found
-    # @contact = @hub.contacts.get(params[:id]) || not_found
     @contact.destroy
 
     respond_to do |format|

@@ -5,7 +5,9 @@ class GroupsController < ApplicationController
   # GET /hubs/:hub_id/groups
   # GET /hubs/:hub_id/groups.json
   def index
-    # @groups = Group.all
+    add_breadcrumb 'Your hubs', :hubs_path
+    add_breadcrumb @hub.name, hub_path(@hub)
+    add_breadcrumb 'Groups', hub_groups_path(@hub)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -16,7 +18,9 @@ class GroupsController < ApplicationController
   # GET /hubs/:hub_id/groups/1
   # GET /hubs/:hub_id/groups/1.json
   def show
-    # @group = Group.get(params[:id])
+    add_breadcrumb 'Your hubs', :hubs_path
+    add_breadcrumb @hub.name, hub_path(@hub)
+    add_breadcrumb @group.name, hub_group_path(@hub, @group)
     @contacts = @group.contacts
 
     respond_to do |format|
@@ -28,7 +32,9 @@ class GroupsController < ApplicationController
   # GET /hubs/:hub_id/groups/new
   # GET /hubs/:hub_id/groups/new.json
   def new
-    # @group = Group.new(:hub => @hub)
+    add_breadcrumb 'Your hubs', :hubs_path
+    add_breadcrumb @hub.name, hub_path(@hub)
+    add_breadcrumb 'New group', new_hub_group_path(@hub)
 
     respond_to do |format|
       format.html # new.html.erb
@@ -38,7 +44,10 @@ class GroupsController < ApplicationController
 
   # GET /hubs/:hub_id/groups/1/edit
   def edit
-    # @group = @hub.groups.get(params[:id])
+    add_breadcrumb 'Your hubs', :hubs_path
+    add_breadcrumb @hub.name, hub_path(@hub)
+    add_breadcrumb @group.name, hub_group_path(@group)
+    add_breadcrumb 'Edit details', edit_hub_group_path(@hub, @group)
   end
 
   # POST /hubs/:hub_id/groups
