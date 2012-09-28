@@ -10,7 +10,7 @@
 	<tbody>
 	<% @hubs.each do |hub| %>
   <tr>
-		<td><%= link_to hub.name, [hub] %></td>
+		<td><%= link_to hub.name, [hub] %> <span class="icon-list pull-right"></td>
     <td></td>
     <td><%= link_to 'Edit', edit_hub_path(hub), :class => 'btn' %></td>
     <td><%= link_to 'Destroy!', [hub], :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-danger' %></td>

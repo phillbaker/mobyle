@@ -17,7 +17,7 @@ class HubsController < ApplicationController
   def show
     add_breadcrumb 'Your hubs', :hubs_path
     add_breadcrumb @hub.name, hub_path(@hub)
-    @groups = @hub.groups
+    @groups = @hub.groups(:parent_id => nil)
     
     respond_to do |format|
       format.html # show.html.erb

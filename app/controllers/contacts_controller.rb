@@ -63,7 +63,8 @@ class ContactsController < ApplicationController
 
     respond_to do |format|
       if @contact.save
-        format.html { redirect_to [@hub, @group, @contact], :notice => 'Contact was successfully created.' }
+        # TODO do a JS fading highlight of the new contact
+        format.html { redirect_to [@hub, @group], :notice => 'Contact was successfully created.' }
         format.json { render :json => @contact, :status => :created, :location => @contact }
       else
         format.html { render :action => "new" }

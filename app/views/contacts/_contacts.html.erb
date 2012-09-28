@@ -9,6 +9,9 @@
 <% if @contacts == nil || @contacts.size == 0 %>
 	<tr>
 		<td>No contacts yet! :[. It's okay, you can <%= link_to 'make a contact', new_hub_group_contact_path(@hub, @group) %></td>
+		<td></td>
+		<td></td>
+		<td></td>
 	</tr>
 	<%# add in another row to get the offsetting zebra stripe, make it look balanced %>
 	<tr>
