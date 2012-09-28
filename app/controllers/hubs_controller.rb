@@ -88,7 +88,7 @@ class HubsController < ApplicationController
   
   # GET /hubs/1/mobile
   def mobile
-    @groups = @hub.groups
+    @groups = @hub.groups(:parent_id => nil)
     
     respond_to do |format|
       format.html do

@@ -26,13 +26,12 @@
 		<script src="js/vendor/modernizr-2.6.2.min.js"></script>%>
 	</head>
 	<body>
-	
-		<%# Do the hub categories top level page :object => @hub%>
+		<%# Do the hub categories top level page. First jqm page is default %>
 		<%= render :partial => 'hub_page', :layout => 'jqm_page', :locals => { :page => @hub, :type => 'hub' } %>
 		
-		<%# Do the individual categories pages%>		
-		<% @groups.each do |group| %>
-			<%= render :partial => 'group_page', :layout => 'jqm_page', :locals => { :page => group, :type => 'group', :group => group, :back => 'Home' } %>
+		<%# Do the individual categories pages %>		
+		<% @hub.groups.each do |group_or_subgroup| %>
+			<%= render :partial => 'group_page', :layout => 'jqm_page', :locals => { :page => group_or_subgroup, :type => 'group', :group => group_or_subgroup, :back => 'Home' } %>
 		<% end %>
 	
 		<%#TODO <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
