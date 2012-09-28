@@ -20,7 +20,11 @@ class GroupsController < ApplicationController
   def show
     add_breadcrumb 'Your hubs', :hubs_path
     add_breadcrumb @hub.name, hub_path(@hub)
+    @group.ancestors.each do |ancestor|
+      add_breadcrumb ancestor.name, hub_group_path(@hub, ancestor)
+    end
     add_breadcrumb @group.name, hub_group_path(@hub, @group)
+    
     @contacts = @group.contacts
 
     respond_to do |format|
@@ -31,11 +35,19 @@ class GroupsController < ApplicationController
 
   # GET /hubs/:hub_id/groups/new
   # GET /hubs/:hub_id/groups/new.json
+  # GET /hubs/:hub_id/groups/:id/new
+  # GET /hubs/:hub_id/groups/:id/new.json
   def new
+    @group.parent_id = params[:group_id]
+    
     add_breadcrumb 'Your hubs', :hubs_path
     add_breadcrumb @hub.name, hub_path(@hub)
-    add_breadcrumb 'New group', new_hub_group_path(@hub)
-
+    unless params[:group_id]
+      add_breadcrumb 'New group', new_hub_group_path(@hub)
+    else
+      add_breadcrumb 'New sub group', hub_group_subgroup_path(@hub, @group.parent)
+    end
+    
     respond_to do |format|
       format.html # new.html.erb
       format.json { render :json => @group }
@@ -53,7 +65,7 @@ class GroupsController < ApplicationController
   # POST /hubs/:hub_id/groups
   # POST /hubs/:hub_id/groups.json
   def create
-    # @group = Group.new(params[:group])
+    # @group.parent_id = params[:parent_id] => in the form?
     @group.hub = @hub
 
     respond_to do |format|
@@ -70,8 +82,6 @@ class GroupsController < ApplicationController
   # PUT /hubs/:hub_id/groups/1
   # PUT /hubs/:hub_id/groups/1.json
   def update
-    # @group = @hub.groups.get(params[:id])
-
     respond_to do |format|
       if @group.update(params[:group])
         format.html { redirect_to [@hub, @group], :notice => 'Group was successfully updated.' }

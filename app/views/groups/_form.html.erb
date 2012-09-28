@@ -3,6 +3,10 @@
 
 	<div class="form-inputs">
 		<%= f.input :name %>
+		
+		<% if @group.parent_id %>
+			<%= f.input :parent_id %>
+		<% end %>
   </div>
 
 	

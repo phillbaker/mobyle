@@ -24,6 +24,7 @@ gem 'dm-observer',        DM_VERSION
 
 gem 'dm-serializer',     '~> 1.2.0'
 gem 'dm-devise',         '~> 2.1.0'
+gem 'dm-is-tree'          
 
 gem 'cancan'
 gem 'simple_form'

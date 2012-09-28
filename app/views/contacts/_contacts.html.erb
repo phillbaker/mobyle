@@ -1,0 +1,20 @@
+<% @contacts.each do |contact| %>
+  <tr>
+		<td><%= link_to contact.name, [contact.group.hub, contact.group, contact] %></td>
+		<td><%= contact.telephone.to_s %></td>
+    <td><%= link_to 'Edit', edit_hub_group_contact_path(contact.group.hub, contact.group, contact), :class => 'btn' %></td>
+    <td><%= link_to 'Destroy!', [contact.group.hub, contact.group, contact], :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-danger' %></td>
+  </tr>
+<% end %>
+<% if @contacts == nil || @contacts.size == 0 %>
+	<tr>
+		<td>No contacts yet! :[. It's okay, you can <%= link_to 'make a contact', new_hub_group_contact_path(@hub, @group) %></td>
+	</tr>
+	<%# add in another row to get the offsetting zebra stripe, make it look balanced %>
+	<tr>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+<% end %>

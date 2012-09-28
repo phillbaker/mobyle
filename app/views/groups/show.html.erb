@@ -1,6 +1,33 @@
 <div class="toolbar clearfix">
 	<h2 class="pull-left"><%= @group.name %></h2>
-	<%= link_to 'Edit', edit_hub_group_path(@group), :class => 'btn pull-left' %>
+	<div class="buttons">
+		<%= link_to 'Edit', edit_hub_group_path(@hub, @group), :class => 'btn pull-left' %>
+	</div>
 </div>
 
-<%= render 'contacts/listing' %>
+<%# So, this could be either contacts or sub-groups... 
+			Tentative plan: the table will be 1 column of name, 1 column of detail preview
+		<%= render 'contacts/listing' % >
+%>
+
+<table class="table table-striped">
+  <tr>
+		<th>Name</th>
+		<th>Details</th>
+    <th></th>
+    <th>
+			<%= link_to 'New Subgroup', hub_group_subgroup_path(@hub, @group), :class => 'btn pull-right' %>
+			<%= link_to 'New Contact', new_hub_group_contact_path(@hub, @group), :class => 'btn pull' %>
+		</th>
+  </tr>
+	<% @group.children.each do |group| %>
+		<%# use info background color to distinguish sub groups? class="info" %>
+	  <tr>
+			<td><%= link_to group.name, [group.hub, group] %><span class="icon-folder-close pull-right"></span></td>
+	    <td></td>
+	    <td><%= link_to 'Edit', edit_hub_group_path(group.hub, group), :class => 'btn' %></td>
+	    <td><%= link_to 'Destroy!', [group.hub, group], :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-danger' %></td>
+	  </tr>
+	<% end %>
+	<%= render 'contacts/contacts' %>
+</table>
