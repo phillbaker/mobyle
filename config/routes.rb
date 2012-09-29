@@ -1,4 +1,6 @@
 Ihub::Application.routes.draw do
+  get 'm/:private_id' => 'hubs#mobile_private', :as => 'private_mobile_hub'
+  
   resources :hubs do
     resources :groups do
       resources :contacts

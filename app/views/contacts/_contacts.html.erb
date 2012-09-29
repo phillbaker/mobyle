@@ -1,7 +1,9 @@
 <% @contacts.each do |contact| %>
   <tr>
 		<td><%= link_to contact.name, [contact.group.hub, contact.group, contact] %></td>
-		<td><%= contact.telephone.to_s %></td>
+		<td>
+			<%= [contact.telephone, contact.email].select{|o| !o.blank? }.join(', ') %>
+		</td>
     <td><%= link_to 'Edit', edit_hub_group_contact_path(contact.group.hub, contact.group, contact), :class => 'btn' %></td>
     <td><%= link_to 'Destroy!', [contact.group.hub, contact.group, contact], :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-danger' %></td>
   </tr>

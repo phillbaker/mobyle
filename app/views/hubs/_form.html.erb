@@ -3,6 +3,10 @@
 
 	<div class="form-inputs">
 		<%= f.input :name %>
+		<%# Show private link if we've already been created #TODO have a separate button to reset this link %>
+		<% if @hub.private_seed %>
+			<%= f.input :private_link, :readonly => true %>
+		<% end %>
 	</div>
 	
 	<div class="form-actions">

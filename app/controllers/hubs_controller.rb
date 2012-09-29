@@ -1,5 +1,7 @@
 class HubsController < ApplicationController
-  load_and_authorize_resource :hub, :through => :current_user
+  skip_authorization_check :only => :mobile_private
+  skip_before_filter :authenticate_user!, :only => :mobile_private
+  load_and_authorize_resource :hub, :through => :current_user, :except => :mobile_private
   
   # GET /hubs
   # GET /hubs.json
@@ -93,6 +95,18 @@ class HubsController < ApplicationController
     respond_to do |format|
       format.html do
         render :layout => false # mobile.html.erb
+      end 
+    end
+  end
+  
+  # GET /m/:private_id
+  def mobile_private
+    @hub = Hub.first(:private_id => params[:private_id])
+    @groups = @hub.groups(:parent_id => nil)
+    
+    respond_to do |format|
+      format.html do
+        render 'mobile', :layout => false # mobile.html.erb
       end 
     end
   end

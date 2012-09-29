@@ -9,6 +9,7 @@ class Contact
   
   property :name, String
   property :telephone, Integer
+  property :email, String
   
   belongs_to :group
 end
