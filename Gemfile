@@ -24,6 +24,7 @@ gem 'dm-observer',        DM_VERSION
 
 gem 'dm-serializer',     '~> 1.2.0'
 gem 'dm-devise',         '~> 2.1.0'
+gem 'data_objects',      '0.10.8' # data_objects (0.10.9) doesn't like compiling on ubuntu...
 gem 'dm-is-tree'          
 
 gem 'cancan'

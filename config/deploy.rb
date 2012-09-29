@@ -90,6 +90,13 @@ namespace :db do
   end
 end
 
+namespace :bundle do
+  task :install do
+    # Same as default, just don't be quiet
+    run "cd #{current_release} && bundle install --gemfile #{current_release}/Gemfile --path #{shared_path}/bundle --deployment --without development test"
+  end
+end
+
 after "deploy:setup", "configuration:make_default_folders"
 after "deploy:setup", "configuration:deploy_apache_configuration"
 
