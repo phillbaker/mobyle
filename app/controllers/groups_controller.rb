@@ -65,14 +65,20 @@ class GroupsController < ApplicationController
   # POST /hubs/:hub_id/groups
   # POST /hubs/:hub_id/groups.json
   def create
-    # @group.parent_id = params[:parent_id] => in the form?
+    # @group.parent_id is in the form if we need it
     @group.hub = @hub
-
+    
+    p @group
+    p @group.valid?
+    
     respond_to do |format|
-      if @group.save
+      result = @group.save
+      if result
         format.html { redirect_to [@hub, @group], :notice => 'Group was successfully created.' }
         format.json { render :json => @group, :status => :created, :location => @group }
       else
+        p result
+        p @group.errors
         format.html { render :action => "new" }
         format.json { render :json => @group.errors, :status => :unprocessable_entity }
       end

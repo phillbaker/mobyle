@@ -12,7 +12,7 @@ class Hub
   property :name, String
   
   property :private_seed, String
-  property :private_id, String
+  property :private_id, String, :length => 64
   
   belongs_to :user
   has n, :groups

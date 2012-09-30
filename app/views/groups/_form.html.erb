@@ -5,12 +5,15 @@
 		<%= f.input :name %>
 		
 		<% if @group.parent_id %>
-			<%= f.input :parent_id %>
+			<%#= f.input :parent_id %>
+			<%= f.hidden_field :parent_id, :value => @group.parent_id %>
 		<% end %>
   </div>
 
 	
 	<div class="form-actions">
 		<%= f.button :submit, :class => 'btn-primary' %>
+		<%= link_to 'Cancel', hub_groups_path(@hub), :class => 'btn' %>
+		
 	</div>
 <% end %>

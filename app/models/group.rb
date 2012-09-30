@@ -13,19 +13,19 @@ class Group
   belongs_to :hub
   is :tree, :order => :name
   
-  # prevent saving Group as child of self, except when new?
+  # prevent saving Group as child of self, except when new
   validates_with_method :parent_id,
-                        :method => :category_cannot_be_made_a_child_of_self,
+                        :method => :cannot_be_made_a_child_of_self,
                         :unless => :new?
   
   protected
 
-    def category_cannot_be_made_a_child_of_self
-      if self.id === self.parent_id
-        return [
-          false,
-          "A Category [ #{self.name} ] cannot be made a child of it self [ #{self.name} ]"
-        ]
+    def cannot_be_made_a_child_of_self
+      if self.parent_id != nil && self.id === self.parent_id
+        error = "A #{self.class.name.titelize} [ #{self.name} ] cannot be made a child of it self [ #{self.name} ]"
+        #self.errors << 
+        errors.add(:parent_id, error)
+        return [false, error]
       else
         return true
       end
