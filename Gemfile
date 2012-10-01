@@ -34,17 +34,16 @@ gem 'breadcrumbs_on_rails'
 # Gems used only for asset compliation and not required
 # in production environments by default.
 group :assets do
-  # gem 'sass-rails',   '~> 3.2.5'
+  gem 'sass-rails',   '~> 3.2.5' #Required by jquery_mobile_rails
+  gem 'jquery_mobile_rails'
+  gem 'sprockets'
   gem 'therubyracer'
   gem 'less-rails'
   gem 'coffee-rails', '~> 3.2.2'
   gem 'uglifier',     '~> 1.2.4'
+  gem 'jquery-rails', '~> 2.0.1'
+  gem 'less-rails-bootstrap'
 end
-
-gem 'jquery-rails', '~> 2.0.1'
-gem 'sass-rails' # Apparently required by jquery_mobile_rails
-gem 'jquery_mobile_rails'
-gem 'less-rails-bootstrap'
 
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.1'

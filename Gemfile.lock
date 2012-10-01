@@ -245,8 +245,9 @@ DEPENDENCIES
   less-rails
   less-rails-bootstrap
   railties (~> 3.2.8)
-  sass-rails
+  sass-rails (~> 3.2.5)
   simple_form
+  sprockets
   therubyracer
   thin
   turn (~> 0.9.4)

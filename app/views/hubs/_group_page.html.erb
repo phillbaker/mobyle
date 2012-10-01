@@ -3,6 +3,6 @@
 		<li><a href="#group-<%= child.id %>"><%= child.name %></a></li>
 	<% end %>
 	<% group.contacts.each do |contact| %>
-		<li><a href="tel:+<%= contact.telephone %>"><%= contact.name %></a></li>
+		<li data-icon="phone"><a href="tel:+<%= contact.telephone %>"><%= contact.name %></a></li>
 	<% end %>
 </ul>
