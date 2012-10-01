@@ -42,7 +42,7 @@ group :assets do
 end
 
 gem 'jquery-rails', '~> 2.0.1'
-gem 'sass' # Apparently required by jquery_mobile_rails
+gem 'sass-rails' # Apparently required by jquery_mobile_rails
 gem 'jquery_mobile_rails'
 gem 'less-rails-bootstrap'
 
