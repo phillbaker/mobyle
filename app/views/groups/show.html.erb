@@ -1,9 +1,12 @@
 <div class="toolbar clearfix">
 	<h2 class="pull-left"><%= @group.name %></h2>
-	<div class="buttons">
+	<div class="toolbar-buttons-title pull-left">
 		<%= link_to 'Edit', edit_hub_group_path(@hub, @group), :class => 'btn pull-left' %>
 	</div>
+	<div class="toolbar-buttons-other pull-right">
+	</div>
 </div>
+
 
 <%# The table is 1 column of name, 1 column of detail preview. This is not just contacts/listing because of the subgroups. %>
 <table class="table table-striped">

@@ -1,7 +1,11 @@
 <div class="toolbar clearfix">
 	<h2 class="pull-left"><%= @hub.name %></h2>
-	<%= link_to 'Edit', edit_hub_path(@hub), :class => 'btn pull-left' %>
-	<%= link_to 'Mobile version', mobile_hub_path(@hub), :class => 'btn pull-right btn-primary' %>
+	<div class="toolbar-buttons-title pull-left">
+		<%= link_to 'Edit', edit_hub_path(@hub), :class => 'btn pull-left' %>
+	</div>
+	<div class="toolbar-buttons-other pull-right">
+		<%= link_to 'Mobile version', mobile_hub_path(@hub), :class => 'btn pull-right btn-primary' %>
+	</div>
 </div>
 
 <%= render 'groups/listing' %>
