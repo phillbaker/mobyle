@@ -10,15 +10,16 @@
 
 <%# The table is 1 column of name, 1 column of detail preview. This is not just contacts/listing because of the subgroups. %>
 <table class="table table-striped">
-  <tr>
-		<th>Name</th>
-		<th>Details</th>
-    <th></th>
-    <th>
-			<%= link_to 'New Subgroup', hub_group_subgroup_path(@hub, @group), :class => 'btn pull-right' %>
-			<%= link_to 'New Contact', new_hub_group_contact_path(@hub, @group), :class => 'btn pull' %>
-		</th>
-  </tr>
+	<thead>
+	  <tr>
+			<th class="name">Name</th>
+			<th class="details">Details</th>
+	    <th class="controls" colspan="2">
+				<%= link_to 'New Subgroup', hub_group_subgroup_path(@hub, @group), :class => 'btn pull-right' %>
+				<%= link_to 'New Contact', new_hub_group_contact_path(@hub, @group), :class => 'btn pull-right' %>
+			</th>
+	  </tr>
+	</thead>
 	<% @group.children.each do |group| %>
 		<%# use info background color to distinguish sub groups? class="info" %>
 	  <tr>

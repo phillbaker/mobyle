@@ -1,12 +1,13 @@
 <table class="table table-striped">
-  <tr>
-		<th>Contact Name</th>
-		<th>Telephone</th>
-		<th>E-mail</th>
-    <th></th>
-    <th></th>
-    <th><%= link_to 'New Contact', new_hub_group_contact_path(@hub, @group), :class => 'btn pull-right' %></th>
-  </tr>
-
+	<thead>
+	  <tr>
+			<th>Contact Name</th>
+			<th>Telephone</th>
+			<th>E-mail</th>
+	    <th></th>
+	    <th></th>
+	    <th><%= link_to 'New Contact', new_hub_group_contact_path(@hub, @group), :class => 'btn pull-right' %></th>
+	  </tr>
+	</thead>
 	<%= render 'contacts' %>
 </table>

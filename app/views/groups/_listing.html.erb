@@ -1,11 +1,12 @@
 <table class="table table-striped">
-  <tr>
-		<th>Group Name</th>
-    <th></th>
-    <th></th>
-    <th><%= link_to 'New group', new_hub_group_path(@hub), :class => 'btn pull-right' %></th>
-  </tr>
-
+	<thead>
+	  <tr>
+			<th>Group Name</th>
+	    <th></th>
+	    <th></th>
+	    <th><%= link_to 'New group', new_hub_group_path(@hub), :class => 'btn pull-right' %></th>
+	  </tr>
+	</thead>
 <% @groups.each do |group| %>
   <tr>
 		<td><%= link_to group.name, [group.hub, group] %> <span class="icon-folder-close pull-right"></td>
