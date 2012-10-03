@@ -1,15 +1,20 @@
-require "bundler/capistrano"
+require 'bundler/capistrano'
+require 'config/deploy/notifier.rb'
 load 'deploy/assets'
 
 set :application, "ihub.phillbaker.com"
+set :deploy_to, "/var/www/#{application}"
 
 set :user, "branch"
+
+set :scm, :git
 set :repository,  "."
-set :deploy_to, "/var/www/#{application}"
 set :deploy_via, :copy
 set :copy_strategy, :export
+
 set :use_sqlite3, true
-set :scm, :git
+
+set :notify_emails, ["me@retrodict.com", "fgencorelli@gmail.com"]
 
 set :shared_database_path, "#{shared_path}/db"
 set :shared_config_path, "#{shared_path}/config"
@@ -93,7 +98,7 @@ end
 namespace :bundle do
   task :install do
     # Same as default, just don't be quiet
-    run "cd #{current_release} && bundle install --gemfile #{current_release}/Gemfile --path #{shared_path}/bundle --deployment --without development test"
+    run "cd #{current_release} && bundle install --verbose --gemfile #{current_release}/Gemfile --path #{shared_path}/bundle --deployment --without development test"
   end
 end
 
@@ -111,3 +116,15 @@ if use_sqlite3
   
   before "deploy:create_symlink", "sqlite3:link_configuration_file"
 end
+
+# Create the task to send the notification
+namespace :deploy do
+  desc "Email notifier"
+  task :notify do
+    Notifier.deploy_notification(self).deliver
+  end
+end
+
+# Setup the emails, and after deploy hook
+after "deploy", "deploy:notify"
+
