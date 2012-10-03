@@ -27,11 +27,11 @@
 	</head>
 	<body>
 		<%# Do the hub categories top level page. First jqm page is default %>
-		<%= render :partial => 'hub_page', :layout => 'jqm_page', :locals => { :page => @hub, :type => 'hub' } %>
+		<%= render :partial => 'hub_page', :layout => 'jqm_page', :locals => { :page => @hub, :type => 'hub', :footer => @hub.mobile_footer } %>
 		
 		<%# Do the individual categories pages %>		
 		<% @hub.groups.each do |group_or_subgroup| %>
-			<%= render :partial => 'group_page', :layout => 'jqm_page', :locals => { :page => group_or_subgroup, :type => 'group', :group => group_or_subgroup, :back => 'Home' } %>
+			<%= render :partial => 'group_page', :layout => 'jqm_page', :locals => { :page => group_or_subgroup, :type => 'group', :group => group_or_subgroup, :back => 'Home', :footer => @hub.mobile_footer } %>
 		<% end %>
 	
 		<%#TODO <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>

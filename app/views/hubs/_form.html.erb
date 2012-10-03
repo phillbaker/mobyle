@@ -3,6 +3,7 @@
 
 	<div class="form-inputs">
 		<%= f.input :name %>
+		<%= f.input :mobile_footer %><%#TODO Add helper text that explains this is for copyright/etc. %>
 		<%# Show private link if we've already been created #TODO have a button to reset this link %>
 		<% if @hub.private_seed %>
 			<%= f.input :private_link, :readonly => true %>

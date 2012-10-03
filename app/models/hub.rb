@@ -10,6 +10,7 @@ class Hub
   property :updated_on, Date
   
   property :name, String
+  property :mobile_footer, String, :length => 255
   
   property :private_seed, String
   property :private_id, String, :length => 64
