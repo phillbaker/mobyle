@@ -45,9 +45,9 @@
 	    </div>
 			<% unless notice.blank? %><p class="notice alert-info"><%= notice %></p><% end %>
 			<% unless alert.blank? %><p class="alert alert-error"><%= alert %></p><% end %>
-			<% unless @is_home %>
-		  <%= render_breadcrumbs :builder => ::BootstrapBreadcrumbsBuilder, :separator => '&raquo;' %>
-			<% end %>
+			<%- unless @is_home %>
+		  	<%= render_breadcrumbs :builder => ::BootstrapBreadcrumbsBuilder, :separator => '&raquo;' %>
+			<% end -%>
 		</header>
 		<div id="container">
 	    <div id="main" role="main">
