@@ -3,11 +3,15 @@
 
 	<div class="form-inputs">
 		<%= f.input :name %>
-		<%= f.input :mobile_footer %><%#TODO Add helper text that explains this is for copyright/etc. %>
+		<%= f.input :mobile_footer, :hint => 'Customize your footer!' %>
 		<%# Show private link if we've already been created #TODO have a button to reset this link %>
-		<% if @hub.private_seed %>
-			<%= f.input :private_link, :readonly => true %>
-		<% end %>
+		<%- if @hub.private_seed -%>
+			<%= f.input :private_link, :hint => 'This will permanently change the private link for everyone accessing this hub. Are you sure?' do %>
+				<%= f.text_field :private_link, :readonly => true %>
+				<%#TODO make this work %>
+				<%= button_tag 'Reset the private link', :class => 'btn btn-danger' %>
+			<% end %>
+		<%- end -%>
 	</div>
 	
 	<div class="form-actions">

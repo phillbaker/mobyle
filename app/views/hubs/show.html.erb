@@ -4,8 +4,16 @@
 		<%= link_to 'Edit', edit_hub_path(@hub), :class => 'btn pull-left' %>
 	</div>
 	<div class="toolbar-buttons-other pull-right">
-		<%= link_to 'Mobile version', mobile_hub_path(@hub), :class => 'btn pull-right btn-primary' %>
+		<%= link_to 'Mobile preview', mobile_hub_path(@hub), :class => 'btn pull-right btn-primary' %>
 	</div>
 </div>
-
+<div class="pull-right">
+	<div class="input-prepend">
+		<span class="add-on">Secret link</span>
+		<%= text_field_tag :private_link, @hub.private_link, :disabled => true %>
+	</div>
+	<span class="help-block small">Give this link to others to use the mobile hub.</span>
+</div>
+	
+</div>
 <%= render 'groups/listing' %>
