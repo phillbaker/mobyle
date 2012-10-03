@@ -1,0 +1,5 @@
+<ul data-role="listview" data-inset="true">
+	<% group.contacts.each do |contact| %>
+		<li data-icon="email"><a href="mailto:<%= contact.email %>"><%= contact.name %></a></li>
+	<% end %>
+</ul>

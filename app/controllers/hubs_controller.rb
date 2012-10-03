@@ -91,7 +91,13 @@ class HubsController < ApplicationController
   # GET /hubs/1/mobile
   def mobile
     @groups = @hub.groups(:parent_id => nil)
-    @app_groups = [] #TODO
+    
+    #TODO this doesn't work. Add in admin role/initial superuser then do /hubs (list all)
+    support_group = Group.new(:name => 'iHub Support')
+    support_contact = Contact.new(:name => 'Email us for more help or suggestions.', :email => 'name@example.com')
+    #support_contact.group = support_group
+    support_group.contacts << support_contact
+    @app_groups = [support_group] 
     
     respond_to do |format|
       format.html do
