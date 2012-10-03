@@ -21,6 +21,7 @@ gem 'dm-transactions',    DM_VERSION
 gem 'dm-aggregates',      DM_VERSION
 gem 'dm-timestamps',      DM_VERSION
 gem 'dm-observer',        DM_VERSION
+gem 'dm-paperclip'#, :require => 'paperclip' # Use in place of regular paperclip for jquery-fileupload-rails
 
 gem 'dm-serializer',     '~> 1.2.0'
 gem 'dm-devise',         '~> 2.1.0'
@@ -35,15 +36,17 @@ gem 'breadcrumbs_on_rails'
 # in production environments by default.
 group :assets do
   gem 'sass-rails',   '~> 3.2.5' #Required by jquery_mobile_rails
-  gem 'jquery_mobile_rails'
   gem 'sprockets'
   gem 'therubyracer'
   gem 'less-rails'
   gem 'coffee-rails', '~> 3.2.2'
   gem 'uglifier',     '~> 1.2.4'
-  gem 'jquery-rails', '~> 2.0.1'
-  gem 'less-rails-bootstrap'
 end
+
+#TODO gem 'jquery-fileupload-rails'
+gem 'jquery-rails', '~> 2.0.1'
+gem 'less-rails-bootstrap'
+gem 'jquery_mobile_rails'
 
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.1'
