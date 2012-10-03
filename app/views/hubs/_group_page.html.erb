@@ -1,8 +1,12 @@
-<ul data-role="listview" data-inset="true" data-filter="true" data-filter-placeholder="Search people..." data-autodividers="true">
-	<% group.children.each do |child| %>
-		<li><a href="#group-<%= child.id %>"><%= child.name %></a></li>
-	<% end %>
-	<% group.contacts.each do |contact| %>
-		<li data-icon="phone"><a href="tel:+<%= contact.telephone %>"><%= contact.name %></a></li>
-	<% end %>
-</ul>
+<%- unless group.children.empty? -%>
+	<ul data-role="listview" data-inset="true" data-filter="true" data-filter-placeholder="Search people..." data-autodividers="true">
+		<% group.children.each do |child| %>
+			<li><a href="#group-<%= child.id %>"><%= child.name %></a></li>
+		<% end %>
+		<% group.contacts.each do |contact| %>
+			<li data-icon="phone"><a href="tel:+<%= contact.telephone %>"><%= contact.name %></a></li>
+		<% end %>
+	</ul>
+<%- else -%>
+	Nothing to see here. Move along.
+<%- end -%>
