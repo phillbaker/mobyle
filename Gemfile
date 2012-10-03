@@ -43,7 +43,7 @@ group :assets do
   gem 'uglifier',     '~> 1.2.4'
 end
 
-#TODO gem 'jquery-fileupload-rails'
+gem 'jquery-fileupload-rails'
 gem 'jquery-rails', '~> 2.0.1'
 gem 'less-rails-bootstrap'
 gem 'jquery_mobile_rails'
