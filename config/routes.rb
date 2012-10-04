@@ -1,4 +1,8 @@
 Ihub::Application.routes.draw do
+  resources :file_uploads
+
+  resources :uploads
+
   get 'm/:private_id' => 'hubs#mobile_private', :as => 'private_mobile_hub'
   
   resources :hubs do

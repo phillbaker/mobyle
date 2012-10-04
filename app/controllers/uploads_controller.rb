@@ -1,8 +1,9 @@
 class UploadsController < ApplicationController
+  load_and_authorize_resource
+  
   # GET /uploads
   # GET /uploads.json
   def index
-    @uploads = Upload.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,7 +14,6 @@ class UploadsController < ApplicationController
   # GET /uploads/1
   # GET /uploads/1.json
   def show
-    @upload = Upload.get(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -24,7 +24,6 @@ class UploadsController < ApplicationController
   # GET /uploads/new
   # GET /uploads/new.json
   def new
-    @upload = Upload.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -34,18 +33,24 @@ class UploadsController < ApplicationController
 
   # GET /uploads/1/edit
   def edit
-    @upload = Upload.get(params[:id])
   end
 
   # POST /uploads
   # POST /uploads.json
   def create
-    @upload = Upload.new(params[:upload])
-
     respond_to do |format|
       if @upload.save
+        result = {
+          "name" => @upload.upload_file_name,
+          "size" => @upload.upload_file_size,
+          "url" => @upload.upload.url(:original),
+          "delete_url" => upload_path(@upload),
+          "delete_type" => "DELETE"
+        }
+        
         format.html { redirect_to @upload, :notice => 'Upload was successfully created.' }
-        format.json { render :json => @upload, :status => :created, :location => @upload }
+        #format.json { render :json => @upload, :status => :created, :location => @upload }
+        format.json { render :json => [result].to_json, :status => :created, :location => @upload }
       else
         format.html { render :action => "new" }
         format.json { render :json => @upload.errors, :status => :unprocessable_entity }
@@ -56,7 +61,6 @@ class UploadsController < ApplicationController
   # PUT /uploads/1
   # PUT /uploads/1.json
   def update
-    @upload = Upload.get(params[:id])
 
     respond_to do |format|
       if @upload.update(params[:upload])
@@ -72,7 +76,6 @@ class UploadsController < ApplicationController
   # DELETE /uploads/1
   # DELETE /uploads/1.json
   def destroy
-    @upload = Upload.get(params[:id])
     @upload.destroy
 
     respond_to do |format|

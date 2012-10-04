@@ -1,8 +1,3 @@
-class FileUpload
-
-  include DataMapper::Resource
-
-  property :id, Serial
-
+class FileUpload < Upload
 
 end

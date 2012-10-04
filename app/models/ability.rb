@@ -5,6 +5,7 @@ class Ability
     user ||= User.new # Guest user (not logged in)
     # if user.admin? #TODO
     #   can :manage, :all
+      can :manage, Upload
     # else
       can :manage, User, :id => user.id
       can :manage, Hub, :user_id => user.id

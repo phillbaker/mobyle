@@ -21,12 +21,12 @@ gem 'dm-transactions',    DM_VERSION
 gem 'dm-aggregates',      DM_VERSION
 gem 'dm-timestamps',      DM_VERSION
 gem 'dm-observer',        DM_VERSION
-gem 'dm-paperclip'#, :require => 'paperclip' # Use in place of regular paperclip for jquery-fileupload-rails
 
 gem 'dm-serializer',     '~> 1.2.0'
 gem 'dm-devise',         '~> 2.1.0'
 gem 'data_objects',      '0.10.8' # data_objects (0.10.9) doesn't like compiling on ubuntu...
 gem 'dm-is-tree'          
+gem 'dm-paperclip', :git => 'git://github.com/phillbaker/dm-paperclip.git' # Use in place of regular paperclip for jquery-fileupload-rails
 
 gem 'cancan'
 gem 'simple_form'

@@ -1,3 +1,12 @@
+GIT
+  remote: git://github.com/phillbaker/dm-paperclip.git
+  revision: b474d2860625d3afe09e5492e8a7d81ca04292d5
+  specs:
+    dm-paperclip (2.4.1)
+      dm-core (>= 1.2.0)
+      dm-validations (>= 1.2.0)
+      extlib (>= 0.9.15)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -52,16 +61,6 @@ GEM
     daemons (1.1.9)
     data_objects (0.10.8)
       addressable (~> 2.1)
-    datamapper (1.2.0)
-      dm-aggregates (~> 1.2.0)
-      dm-constraints (~> 1.2.0)
-      dm-core (~> 1.2.0)
-      dm-migrations (~> 1.2.0)
-      dm-serializer (~> 1.2.0)
-      dm-timestamps (~> 1.2.0)
-      dm-transactions (~> 1.2.0)
-      dm-types (~> 1.2.0)
-      dm-validations (~> 1.2.0)
     devise (2.1.2)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.1)
@@ -92,9 +91,6 @@ GEM
       dm-core (~> 1.2.0)
     dm-observer (1.2.0)
       dm-core (~> 1.2.0)
-    dm-paperclip (2.4.1)
-      datamapper
-      extlib
     dm-rails (1.2.1)
       actionpack (~> 3.0)
       dm-active_model (~> 1.2.0)
@@ -250,7 +246,7 @@ DEPENDENCIES
   dm-is-tree
   dm-migrations (~> 1.2.0)
   dm-observer (~> 1.2.0)
-  dm-paperclip
+  dm-paperclip!
   dm-rails (~> 1.2.1)
   dm-serializer (~> 1.2.0)
   dm-sqlite-adapter (~> 1.2.0)
