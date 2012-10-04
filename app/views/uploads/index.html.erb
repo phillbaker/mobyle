@@ -31,6 +31,12 @@
         </div>
       </div>
     </div>
+		<div class="row dropzone well">
+			<div class="span12">
+				&nbsp;
+			</div>
+		</div>
+
     <!-- The loading indicator is shown during image processing -->
     <div class="fileupload-loading"></div>
     <br>
@@ -111,30 +117,6 @@
     </tr>
     {% } %}
 </script>
-
-<script type="text/javascript" charset="utf-8">
-  $(function () {
-      // Initialize the jQuery File Upload widget:
-      $('#fileupload').fileupload();
-      //
-      // Load existing files:
-      $.getJSON($('#fileupload').prop('action'), function (files) {
-        var fu = $('#fileupload').data('fileupload'),
-          template;
-        fu._adjustMaxNumberOfFiles(-files.length);
-        console.log(files);
-        template = fu._renderDownload(files)
-          .appendTo($('#fileupload .files'));
-        // Force reflow:
-        fu._reflow = fu._transition && template.length &&
-          template[0].offsetWidth;
-        template.addClass('in');
-        $('#loading').remove();
-      });
-
-  });
-</script>
-
 
 <h1>Listing uploads</h1>
 

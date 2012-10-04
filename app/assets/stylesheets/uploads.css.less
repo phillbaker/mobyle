@@ -1,0 +1,47 @@
+/*
+ *= require jquery.fileupload-ui 
+ *= require_self
+ */
+
+// Place all the styles related to the home controller here.
+// They will automatically be included in application.css.
+// You can use Less here: http://lesscss.org/
+
+div.dropzone {
+  position: relative;
+}
+
+div.dropzone:after {
+  background-color: #F5F5F5;
+  border: 1px solid #DDDDDD;
+  border-radius: 0 4px 0 4px;
+  color: #9DA0A4;
+  content: "Drag and drop files to upload here";
+  font-size: 18px;
+  font-weight: bold;
+  left: -1px;
+  padding: 10px 7px 5px 7px;
+  position: absolute;
+  bottom: -1px;
+}
+
+.dropzone.in {
+  border-radius: 7px;
+  border-width: 7px;
+  border-style: dotted;
+}
+
+.dropzone.hover {
+  border-radius: 10px;
+  border-width: 10px;
+  border-style: solid;
+}
+
+.dropzone.fade {
+  -webkit-transition: all 0.3s ease-out;
+  -moz-transition: all 0.3s ease-out;
+  -ms-transition: all 0.3s ease-out;
+  -o-transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out;
+  opacity: 1;
+}
