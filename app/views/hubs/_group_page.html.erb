@@ -1,4 +1,4 @@
-<%- unless group.children.empty? -%>
+<%- if !group.children.empty? || !group.contacts.empty? -%>
 	<ul data-role="listview" data-inset="true" data-filter="true" data-filter-placeholder="Search people..." data-autodividers="true">
 		<% group.children.each do |child| %>
 			<li><a href="#group-<%= child.id %>"><%= child.name %></a></li>

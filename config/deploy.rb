@@ -1,6 +1,7 @@
 require 'bundler/capistrano'
 require 'config/deploy/notifier.rb'
-load 'deploy/assets'
+BAD_BUNDLE = false
+load 'deploy/assets' unless BAD_BUNDLE
 
 set :application, "ihub.phillbaker.com"
 set :deploy_to, "/var/www/#{application}"
@@ -98,14 +99,14 @@ end
 namespace :bundle do
   task :install do
     # Same as default, just don't be quiet
-    run "cd #{current_release} && bundle install --verbose --gemfile #{current_release}/Gemfile --path #{shared_path}/bundle --deployment --without development test"
+    run "cd #{current_release} && bundle install --verbose --gemfile #{current_release}/Gemfile --path #{shared_path}/bundle --deployment --without development test" unless BAD_BUNDLE
   end
 end
 
 after "deploy:setup", "configuration:make_default_folders"
 after "deploy:setup", "configuration:deploy_apache_configuration"
 
-after "deploy", 'deploy:migrate' # Auto upgrade tables, for dm
+after "deploy", 'deploy:migrate' unless BAD_BUNDLE # Auto upgrade tables, for dm
 
 if use_sqlite3
   after "deploy:setup", "sqlite3:make_shared_folder"
