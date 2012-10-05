@@ -2,7 +2,8 @@ require 'digest/sha2'
 
 class Hub
   include DataMapper::Resource
-
+  self.raise_on_save_failure = true
+  
   property :id, Serial
   property :created_at, DateTime
   property :created_on, Date

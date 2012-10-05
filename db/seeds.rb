@@ -5,3 +5,6 @@
 #
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Mayor.create(:name => 'Emanuel', :city => cities.first)
+
+# Use bang to skip validations
+User.create!(:name => 'root', :email => 'root@app', :password => 'gerbilclockrunningwalnut')

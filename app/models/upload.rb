@@ -2,6 +2,7 @@ class Upload
   include ActiveModel::MassAssignmentSecurity
   include DataMapper::Resource
   include Paperclip::Resource
+  self.raise_on_save_failure = true
   
   attr_accessible :upload
   

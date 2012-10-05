@@ -92,12 +92,8 @@ class HubsController < ApplicationController
   def mobile
     @groups = @hub.groups(:parent_id => nil)
     
-    #TODO this doesn't work. Add in admin role/initial superuser then do /hubs (list all)
-    support_group = Group.new(:name => 'iHub Support')
-    support_contact = Contact.new(:name => 'Email us for more help or suggestions.', :email => 'name@example.com')
-    #support_contact.group = support_group
-    support_group.contacts << support_contact
-    @app_groups = [support_group] 
+    #TODO Add in admin role/initial superuser then do /hubs (list all)
+    @app_groups = [support_group()]
     
     respond_to do |format|
       format.html do
@@ -110,11 +106,22 @@ class HubsController < ApplicationController
   def mobile_private
     @hub = Hub.first(:private_id => params[:private_id])
     @groups = @hub.groups(:parent_id => nil)
+    @app_groups = [support_group()]
     
     respond_to do |format|
       format.html do
         render 'mobile', :layout => false # mobile.html.erb
       end 
     end
+  end
+  
+  private
+  
+  def support_group
+    support_group = Group.new(:name => 'iHub Support')
+    support_contact = Contact.new(:name => 'Email us for more help or suggestions.', :email => 'name@example.com')
+    #support_contact.group = support_group
+    support_group.contacts << support_contact
+    support_group
   end
 end

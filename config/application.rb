@@ -24,9 +24,6 @@ module Ihub
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
     
-    # Raising an exception when save fails globally across all models
-    DataMapper::Model.raise_on_save_failure = true
-    
     # Custom directories with classes and modules you want to be autoloadable.
     config.autoload_paths += Dir["#{config.root}/lib/breadcrumbs_on_rails"] #%W(#{config.root}/extras)
     

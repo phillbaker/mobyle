@@ -1,5 +1,6 @@
 class User
   include DataMapper::Resource
+  # Don't do for devise-handled stuff: self.raise_on_save_failure = true
   
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
@@ -51,6 +52,7 @@ class User
   property :invited_by_type, String
 
   property :name, String
+  property :admin, Boolean
 
   #TODO why aren't these default?
   property :id, Serial
@@ -60,5 +62,9 @@ class User
   property :updated_on, Date
   
   has n, :hubs
+  
+  def admin?
+    self.admin || self.id == 1 # User with ID of 1 is superuser
+  end
   
 end
