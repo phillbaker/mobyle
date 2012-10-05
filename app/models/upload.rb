@@ -18,6 +18,9 @@ class Upload
   property :updated_at, DateTime
   property :updated_on, Date
   
+  # Turn on Single Table Inheritance (STI)
+  property :type, Discriminator
+  
   has_attached_file :upload, :whiny => false
   
   before :create do

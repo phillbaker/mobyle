@@ -1,3 +1,0 @@
-class FileUpload < Upload
-
-end
