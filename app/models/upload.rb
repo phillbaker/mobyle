@@ -28,3 +28,6 @@ class Upload
   end
   
 end
+
+class FileUpload < Upload; end # Class for uploads associated with Groups; belongs_to :group, group: has n, :file_uploads
+class Avatar < Upload; end # Class for images associated with Contacts; belongs_to :

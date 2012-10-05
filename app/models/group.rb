@@ -10,8 +10,9 @@ class Group
   
   property :name, String
   
-  has n, :contacts
   belongs_to :hub
+  has n, :contacts
+  
   is :tree, :order => :name
   
   # prevent saving Group as child of self, except when new
