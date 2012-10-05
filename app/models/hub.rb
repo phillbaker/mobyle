@@ -17,7 +17,7 @@ class Hub
   property :private_id, String, :length => 64
   
   belongs_to :user
-  has n, :groups
+  has n, :groups#TODO, :dependent => :destroy
   
   before :create, :create_private_id
   

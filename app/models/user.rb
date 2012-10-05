@@ -61,7 +61,7 @@ class User
   property :updated_at, DateTime
   property :updated_on, Date
   
-  has n, :hubs
+  has n, :hubs#TODO, :dependent => :destroy
   
   def admin?
     self.admin || self.id == 1 # User with ID of 1 is superuser

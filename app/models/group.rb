@@ -11,7 +11,8 @@ class Group
   property :name, String
   
   belongs_to :hub
-  has n, :contacts
+  has n, :contacts#TODO, :dependent => :destroy
+  has n, :file_uploads#TODO, :dependent => :destroy
   
   is :tree, :order => :name
   
