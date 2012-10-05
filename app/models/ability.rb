@@ -3,14 +3,14 @@ class Ability
 
   def initialize(user)
     user ||= User.new # Guest user (not logged in)
-    if user.admin? #TODO
+    if user.admin?
       can :manage, :all
-      can :manage, Upload
     else
       can :manage, User, :id => user.id
       can :manage, Hub, :user_id => user.id
       can :manage, Group, :hub => { :user_id => user.id }
       can :manage, Contact, :group => { :hub => { :user_id => user.id } }
+      can :manage, FileUpload, :group => { :hub => { :user_id => user.id } }
     end
     
     # Define abilities for the passed in user here. For example:

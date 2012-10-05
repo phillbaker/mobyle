@@ -3,24 +3,22 @@ class ContactsController < ApplicationController
   load_and_authorize_resource :group, :through => :hub
   load_and_authorize_resource :contact, :through => :group
   
-  # GET /users/:user_id/hubs/:hub_id/contacts
-  # GET /users/:user_id/hubs/contacts.json
+  # GET /hubs/:hub_id/groups/:group_id/contacts
+  # GET /hubs/:hub_id/groups/:group_id/contacts.json
   def index #TODO redundant with parent#show
     add_breadcrumb 'Your hubs', :hubs_path
     add_breadcrumb @hub.name, hub_path(@hub)
     add_breadcrumb @group.name, hub_group_path(@hub, @group)
     add_breadcrumb 'Contacts', hub_group_contacts_path(@hub, @group)
     
-    @contacts = @group.contacts
-
     respond_to do |format|
       format.html # index.html.erb
       format.json { render :json => @contacts }
     end
   end
 
-  # GET /users/:user_id/hubs/contacts/1
-  # GET /users/:user_id/hubs/contacts/1.json
+  # GET /hubs/:hub_id/groups/:group_id/contacts/1
+  # GET /hubs/:hub_id/groups/:group_id/contacts/1.json
   def show
     add_breadcrumb 'Your hubs', :hubs_path
     add_breadcrumb @hub.name, hub_path(@hub)
@@ -33,8 +31,8 @@ class ContactsController < ApplicationController
     end
   end
 
-  # GET /users/:user_id/hubs/contacts/new
-  # GET /users/:user_id/hubs/contacts/new.json
+  # GET /hubs/:hub_id/groups/:group_id/contacts/new
+  # GET /hubs/:hub_id/groups/:group_id/contacts/new.json
   def new
     add_breadcrumb 'Your hubs', :hubs_path
     add_breadcrumb @hub.name, hub_path(@hub)
@@ -47,7 +45,7 @@ class ContactsController < ApplicationController
     end
   end
 
-  # GET /users/:user_id/hubs/contacts/1/edit
+  # GET /hubs/:hub_id/groups/:group_id/contacts/1/edit
   def edit
     add_breadcrumb 'Your hubs', :hubs_path
     add_breadcrumb @hub.name, hub_path(@hub)
@@ -56,8 +54,8 @@ class ContactsController < ApplicationController
     add_breadcrumb 'Edit details', edit_hub_group_contact_path(@hub, @group, @contact)
   end
 
-  # POST /users/:user_id/hubs/contacts
-  # POST /users/:user_id/hubs/contacts.json
+  # POST /hubs/:hub_id/groups/:group_id/contacts
+  # POST /hubs/:hub_id/groups/:group_id/contacts.json
   def create
     @contact.group = @group
 
@@ -73,8 +71,8 @@ class ContactsController < ApplicationController
     end
   end
 
-  # PUT /users/:user_id/hubs/contacts/1
-  # PUT /users/:user_id/hubs/contacts/1.json
+  # PUT /hubs/:hub_id/groups/:group_id/contacts/1
+  # PUT /hubs/:hub_id/groups/:group_id/contacts/1.json
   def update
 
     respond_to do |format|
@@ -88,8 +86,8 @@ class ContactsController < ApplicationController
     end
   end
 
-  # DELETE /users/:user_id/hubs/contacts/1
-  # DELETE /users/:user_id/hubs/contacts/1.json
+  # DELETE /hubs/:hub_id/groups/:group_id/contacts/1
+  # DELETE /hubs/:hub_id/groups/:group_id/contacts/1.json
   def destroy
     @contact.destroy
 

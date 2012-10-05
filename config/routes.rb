@@ -1,11 +1,10 @@
 Ihub::Application.routes.draw do
-  resources :uploads
-
   get 'm/:private_id' => 'hubs#mobile_private', :as => 'private_mobile_hub'
   
   resources :hubs do
     resources :groups do
       resources :contacts
+      resources :file_uploads
       
       #resources :groups #? do for nested?, :only => [:new, :create, :show...]
       # get 'new', :on => :member # => 'groups#new', but is /hubs/:hub_id/groups/:id(.:format)
@@ -21,7 +20,12 @@ Ihub::Application.routes.draw do
 
   # TODO for newsletter subscription/etc. => /unsubscribe?email=pbaker%40retrodict.com&validateCode=IBZBD
   devise_for :users
-  resources :users
+  
+  scope "/admin" do
+    #TODO do non-nested resources for all objects so admin can go in and fix, or support can go in and manually add stuff for folks
+    resources :users
+    resources :uploads
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

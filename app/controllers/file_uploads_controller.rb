@@ -1,8 +1,15 @@
 class FileUploadsController < ApplicationController
+  load_and_authorize_resource :hub, :through => :current_user
+  load_and_authorize_resource :group, :through => :hub
+  load_and_authorize_resource :file_upload, :through => :group
+  
   # GET /file_uploads
   # GET /file_uploads.json
   def index
-    @file_uploads = FileUpload.all
+    add_breadcrumb 'Your hubs', :hubs_path
+    add_breadcrumb @hub.name, hub_path(@hub)
+    add_breadcrumb @group.name, hub_group_path(@hub, @group)
+    add_breadcrumb 'Files', hub_group_file_upload_path(@hub, @group)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,7 +20,10 @@ class FileUploadsController < ApplicationController
   # GET /file_uploads/1
   # GET /file_uploads/1.json
   def show
-    @file_upload = FileUpload.get(params[:id])
+    add_breadcrumb 'Your hubs', :hubs_path
+    add_breadcrumb @hub.name, hub_path(@hub)
+    add_breadcrumb @group.name, hub_group_path(@hub, @group)
+    add_breadcrumb @file_upload.name, hub_group_file_upload_path(@hub, @group, @file_upload)
 
     respond_to do |format|
       format.html # show.html.erb
@@ -24,7 +34,10 @@ class FileUploadsController < ApplicationController
   # GET /file_uploads/new
   # GET /file_uploads/new.json
   def new
-    @file_upload = FileUpload.new
+    add_breadcrumb 'Your hubs', :hubs_path
+    add_breadcrumb @hub.name, hub_path(@hub)
+    add_breadcrumb @group.name, hub_group_path(@hub, @group)
+    add_breadcrumb 'New file', new_hub_group_file_upload_path(@hub, @group)
 
     respond_to do |format|
       format.html # new.html.erb
@@ -34,7 +47,11 @@ class FileUploadsController < ApplicationController
 
   # GET /file_uploads/1/edit
   def edit
-    @file_upload = FileUpload.get(params[:id])
+    add_breadcrumb 'Your hubs', :hubs_path
+    add_breadcrumb @hub.name, hub_path(@hub)
+    add_breadcrumb @group.name, hub_group_path(@hub, @group)
+    add_breadcrumb @file_upload.name, hub_group_contact_path(@hub, @group, @file_upload)
+    add_breadcrumb 'Edit details', edit_hub_group_contact_path(@hub, @group, @file_upload)
   end
 
   # POST /file_uploads

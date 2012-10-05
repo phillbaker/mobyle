@@ -35,10 +35,10 @@ gem 'breadcrumbs_on_rails'
 # Gems used only for asset compliation and not required
 # in production environments by default.
 group :assets do
+  gem 'less-rails' # Do before sass-rails so that scaffolding is done with less
   gem 'sass-rails',   '~> 3.2.5' #Required by jquery_mobile_rails
   gem 'sprockets'
   gem 'therubyracer'
-  gem 'less-rails'
   gem 'coffee-rails', '~> 3.2.2'
   gem 'uglifier',     '~> 1.2.4'
 end
