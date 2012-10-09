@@ -5,11 +5,9 @@ $(function () {
     var fu_elem = $('#fileupload');
     if(fu_elem.length > 0) {
       fu_elem.fileupload({
-        dropZone: $('.dropzone'),
-        add: function (e, data) {
-          // Start immediately
-          data.submit();
-        }
+        //, autoUpload: true
+        //TODO Start immediately if we drag and drop, if we add manually, wait until we hit go
+        dropZone: $('.dropzone')
       });
 
       $(document).bind('dragover', function (e) {
@@ -33,7 +31,7 @@ $(function () {
 
       // Load existing files:
       $.getJSON(fu_elem.prop('action'), function (files) {
-        var fu = $('#fileupload').data('fileupload'),
+        var fu = fu_elem.data('fileupload'),
           template;
         fu._adjustMaxNumberOfFiles(-files.length);
         console.log(files);

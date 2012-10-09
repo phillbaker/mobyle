@@ -1,8 +1,8 @@
 <% @file_uploads.each do |file_upload| %>
   <tr>
 		<td><%= file_upload.name %></td>
-    <td><%= link_to 'Show', file_upload %></td>
-    <td><%= link_to 'Edit', edit_file_upload_path(file_upload) %></td>
-    <td><%= link_to 'Destroy', file_upload, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
+    <td><%= link_to 'Show', [@hub, @group, file_upload] %></td>
+    <td><%= link_to 'Edit', edit_hub_group_file_upload_path(@hub, @group, file_upload), :class => 'btn' %></td>
+    <td><%= link_to 'Destroy', [@hub, @group, file_upload], :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-danger' %></td>
   </tr>
 <% end %>

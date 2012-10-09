@@ -9,7 +9,7 @@ class FileUploadsController < ApplicationController
     add_breadcrumb 'Your hubs', :hubs_path
     add_breadcrumb @hub.name, hub_path(@hub)
     add_breadcrumb @group.name, hub_group_path(@hub, @group)
-    add_breadcrumb 'Files', hub_group_file_upload_path(@hub, @group)
+    add_breadcrumb 'Files', hub_group_file_uploads_path(@hub, @group)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -57,12 +57,12 @@ class FileUploadsController < ApplicationController
   # POST /file_uploads
   # POST /file_uploads.json
   def create
-    @file_upload = FileUpload.new(params[:file_upload])
+    @file_upload.group = @group
 
     respond_to do |format|
       if @file_upload.save
-        format.html { redirect_to @file_upload, :notice => 'File upload was successfully created.' }
-        format.json { render :json => @file_upload, :status => :created, :location => @file_upload }
+        format.html { redirect_to [@hub, @group], :notice => 'File upload was successfully created.' }
+        format.json { render :json => @file_upload, :status => :created, :location => [@hub, @group, @file_upload] }
       else
         format.html { render :action => "new" }
         format.json { render :json => @file_upload.errors, :status => :unprocessable_entity }
@@ -73,11 +73,10 @@ class FileUploadsController < ApplicationController
   # PUT /file_uploads/1
   # PUT /file_uploads/1.json
   def update
-    @file_upload = FileUpload.get(params[:id])
 
     respond_to do |format|
       if @file_upload.update(params[:file_upload])
-        format.html { redirect_to @file_upload, :notice => 'File upload was successfully updated.' }
+        format.html { redirect_to [@hub, @group, @file_upload], :notice => 'File upload was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render :action => "edit" }
@@ -89,11 +88,10 @@ class FileUploadsController < ApplicationController
   # DELETE /file_uploads/1
   # DELETE /file_uploads/1.json
   def destroy
-    @file_upload = FileUpload.get(params[:id])
     @file_upload.destroy
 
     respond_to do |format|
-      format.html { redirect_to file_uploads_url }
+      format.html { redirect_to hub_group_file_uploads_url }
       format.json { head :no_content }
     end
   end

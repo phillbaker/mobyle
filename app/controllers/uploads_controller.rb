@@ -4,6 +4,7 @@ class UploadsController < ApplicationController
   # GET /uploads
   # GET /uploads.json
   def index
+    @upload = Upload.new # Allow file uploads on index page via jq_fu
 
     respond_to do |format|
       format.html # index.html.erb

@@ -4,6 +4,10 @@ class Upload
   include Paperclip::Resource
   self.raise_on_save_failure = true
   
+  #TODO have a check for allowed file types: images, pdf, common productivity files (doc, xls, etc.) based on mime type extraction
+  # http://stackoverflow.com/questions/51572/determine-file-type-in-ruby
+  # http://rubygems.org/gems/ruby-imagespec
+  
   attr_accessible :upload
   
   property :id, Serial
@@ -24,9 +28,9 @@ class Upload
   has_attached_file :upload, :whiny => false
   
   before :create do
-    self.name = self.upload_file_name # Default initial name
+    self.name = File.basename(self.upload_file_name, '.*') # Default initial name
   end
   
 end
 
-class Avatar < Upload; end # Class for images associated with Contacts; belongs_to :
+class Avatar < Upload; end #TODO Class for (only) images associated with Contacts; belongs_to :User
