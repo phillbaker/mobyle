@@ -8,9 +8,9 @@
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
  *
+ *= require twitter/bootstrap
  *= require_self
  *= require_directory .
- *= require twitter/bootstrap
  */
 
 table.table td {
@@ -23,10 +23,32 @@ table.table td {
 }
 
 .notice {
+  //TODO Do this for .alert as well?
   border-radius: 4px 4px 4px 4px;
   list-style: none outside none;
   margin: 0 0 20px;
   padding: 8px 15px;
+}
+
+.navbar {
+  position: relative;
+}
+
+.navbar .brand {
+  font-size: 30px;
+}
+
+.brand-decoration {
+  font-size: 75%;
+  @rotation: 0deg;
+  transform: rotate(@rotation); 
+  -ms-transform: rotate(@rotation); /* IE 9 */ 
+  -moz-transform: rotate(@rotation); /* Firefox */ 
+  -webkit-transform: rotate(@rotation); /* Safari and Chrome */ 
+  -o-transform: rotate(@rotation); /* Opera */
+  position: absolute;
+  left: 70px; 
+  top: 25px;
 }
 
 .toolbar {
@@ -69,4 +91,40 @@ span.small, p.small, li.small {
 .hud.well {
   margin-bottom: 10px;
   padding-bottom: 10px;
+}
+
+.arrow-box {
+	position: relative;
+	background: #88b7d5;
+	border: 4px solid #c2e1f5;
+	color: #fff;
+	padding: 20px;
+	border-radius: 6px 6px 6px 6px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+.arrow-box:after, .arrow-box:before {
+	bottom: 100%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+}
+
+.arrow-box:after {
+	border-color: rgba(136, 183, 213, 0);
+	border-bottom-color: #88b7d5;
+	border-width: 17px;
+	left: 75%;
+	margin-left: -17px;
+}
+
+.arrow-box:before {
+	border-color: rgba(194, 225, 245, 0);
+	border-bottom-color: #c2e1f5;
+	border-width: 23px;
+	left: 75%;
+	margin-left: -23px;
 }

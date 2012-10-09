@@ -26,6 +26,7 @@ class GroupsController < ApplicationController
     add_breadcrumb @group.name, hub_group_path(@hub, @group)
     
     @contacts = @group.contacts
+    @file_uploads = @group.file_uploads
 
     respond_to do |format|
       format.html # show.html.erb

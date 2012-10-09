@@ -10,9 +10,10 @@
 	<%= link_to 'Mobile preview', mobile_hub_path(@hub), :class => 'btn pull-right btn-primary' %>
 	<div class="input-prepend">
 		<span class="add-on">Secret link</span>
-		<%= text_field_tag :private_link, @hub.private_link, :disabled => true %>
+		<%# Don't actually make this disabled, that kills click events on the input element %>
+		<%= text_field_tag :private_link, root_url + @hub.private_link, :readonly => :readonly, :class => 'span8 link-distribution' %>
 	</div>
-	<span class="help-block small">Give this link to others to use the mobile hub.</span>
+	<span class="help-block small">Copy this link and send it to anyone you'd like to use this hub.</span>
 
 </div>
 	

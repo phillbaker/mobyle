@@ -30,7 +30,6 @@ class Hub
   
   def private_link
     # Create private link from private id, this should match the route in config/routes.rb
-    #  using relative link (hm...should be absolute.)
-    "/m/#{self.private_id}"
+    "m/#{self.private_id}"
   end
 end

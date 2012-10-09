@@ -1,0 +1,8 @@
+<% @file_uploads.each do |file_upload| %>
+  <tr>
+		<td><%= file_upload.name %></td>
+    <td><%= link_to 'Show', file_upload %></td>
+    <td><%= link_to 'Edit', edit_file_upload_path(file_upload) %></td>
+    <td><%= link_to 'Destroy', file_upload, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
+  </tr>
+<% end %>

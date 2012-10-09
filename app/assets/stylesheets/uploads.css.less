@@ -8,13 +8,14 @@
 // You can use Less here: http://lesscss.org/
 
 div.dropzone {
+  border-radius: 5px;
+  border-width: 5px;
+  border-style: dotted;
   position: relative;
 }
 
 div.dropzone:after {
-  background-color: #F5F5F5;
-  border: 1px solid #DDDDDD;
-  border-radius: 0 4px 0 4px;
+  cursor: default;
   color: #9DA0A4;
   content: "Drag and drop files to upload here";
   font-size: 18px;
@@ -32,9 +33,7 @@ div.dropzone:after {
 }
 
 .dropzone.hover {
-  border-radius: 10px;
-  border-width: 10px;
-  border-style: solid;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
 }
 
 .dropzone.fade {
