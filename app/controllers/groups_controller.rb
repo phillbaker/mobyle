@@ -8,7 +8,8 @@ class GroupsController < ApplicationController
     add_breadcrumb 'Your hubs', :hubs_path
     add_breadcrumb @hub.name, hub_path(@hub)
     add_breadcrumb 'Groups', hub_groups_path(@hub)
-
+    append_title "#{@hub.name} Groups"
+    
     respond_to do |format|
       format.html # index.html.erb
       format.json { render :json => @groups }
@@ -24,6 +25,8 @@ class GroupsController < ApplicationController
       add_breadcrumb ancestor.name, hub_group_path(@hub, ancestor)
     end
     add_breadcrumb @group.name, hub_group_path(@hub, @group)
+    
+    append_title @group.name
     
     @contacts = @group.contacts
     @file_uploads = @group.file_uploads
@@ -49,6 +52,8 @@ class GroupsController < ApplicationController
       add_breadcrumb 'New sub group', hub_group_subgroup_path(@hub, @group.parent)
     end
     
+    append_title 'New group'
+    
     respond_to do |format|
       format.html # new.html.erb
       format.json { render :json => @group }
@@ -61,6 +66,8 @@ class GroupsController < ApplicationController
     add_breadcrumb @hub.name, hub_path(@hub)
     add_breadcrumb @group.name, hub_group_path(@group)
     add_breadcrumb 'Edit details', edit_hub_group_path(@hub, @group)
+    
+    append_title "Edit #{@group.name}"
   end
 
   # POST /hubs/:hub_id/groups

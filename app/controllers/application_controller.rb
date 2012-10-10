@@ -17,6 +17,14 @@ class ApplicationController < ActionController::Base
   
   before_filter :authenticate_user!
   check_authorization :unless => :devise_controller?
+  before_filter do 
+    @title = 'iHub'
+  end
+
+  def append_title appendage
+    @title += " | "
+    @title += appendage.to_s
+  end
   
   def not_found
     raise ActionController::RoutingError.new('Not Found')

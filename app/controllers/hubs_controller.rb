@@ -7,6 +7,7 @@ class HubsController < ApplicationController
   # GET /hubs.json
   def index #TODO redundant with home
     add_breadcrumb 'Your hubs', :hubs_path
+    append_title 'Hubs'
 
     respond_to do |format|
       format.html # index.html.erb
@@ -19,6 +20,8 @@ class HubsController < ApplicationController
   def show
     add_breadcrumb 'Your hubs', :hubs_path
     add_breadcrumb @hub.name, hub_path(@hub)
+    append_title @hub.name
+    
     @groups = @hub.groups(:parent_id => nil)
     
     respond_to do |format|
@@ -32,6 +35,7 @@ class HubsController < ApplicationController
   def new
     add_breadcrumb 'Your hubs', :hubs_path
     add_breadcrumb 'New hub', new_hub_path
+    append_title 'New hub'
     
     respond_to do |format|
       format.html # new.html.erb
@@ -44,6 +48,8 @@ class HubsController < ApplicationController
     add_breadcrumb 'Your hubs', :hubs_path
     add_breadcrumb @hub.name, hub_path(@hub)
     add_breadcrumb 'Edit details', edit_hub_path(@hub)
+    
+    append_title "Edit #{@hub.name}"
   end
 
   # POST /hubs
@@ -117,9 +123,10 @@ class HubsController < ApplicationController
   
   private
   
+  # Helper to create the "support" group (contact info/etc.)
   def support_group
     support_group = Group.new(:name => 'iHub Support')
-    support_contact = Contact.new(:name => 'Email us for more help or suggestions.', :email => 'name@example.com')
+    support_contact = Contact.new(:name => 'Email us for more help or suggestions.', :email => 'name@example.com') #TODO put in real e-mail/etc.
     #support_contact.group = support_group
     support_group.contacts << support_contact
     support_group

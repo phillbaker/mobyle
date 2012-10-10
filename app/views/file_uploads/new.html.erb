@@ -1,5 +1,5 @@
 <h2>New file</h2>
 
-<%#= render 'form' %>
-
 <%= render :partial => 'uploads/jqfu_form', :locals => { :upload => [@hub, @group, @file_upload], :index => false } %>
+
+<%= link_to 'Done', hub_group_path(@hub, @group), :class => 'btn' %>
