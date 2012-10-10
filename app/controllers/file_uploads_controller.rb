@@ -61,8 +61,11 @@ class FileUploadsController < ApplicationController
 
     respond_to do |format|
       if @file_upload.save
+        result = @file_upload.to_jq_upload()
+        result[:delete_url] = hub_group_file_upload_path(@hub, @group, @file_upload)
+        
         format.html { redirect_to [@hub, @group], :notice => 'File upload was successfully created.' }
-        format.json { render :json => @file_upload, :status => :created, :location => [@hub, @group, @file_upload] }
+        format.json { render :json => [result].to_json, :status => :created, :location => [@hub, @group, @file_upload] }
       else
         format.html { render :action => "new" }
         format.json { render :json => @file_upload.errors, :status => :unprocessable_entity }

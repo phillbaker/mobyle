@@ -41,13 +41,8 @@ class UploadsController < ApplicationController
   def create
     respond_to do |format|
       if @upload.save
-        result = {
-          "name" => @upload.upload_file_name,
-          "size" => @upload.upload_file_size,
-          "url" => @upload.upload.url(:original),
-          "delete_url" => upload_path(@upload),
-          "delete_type" => "DELETE"
-        }
+        result = @upload.to_jq_upload()
+        result[:delete_url] = upload_path(@upload)
         
         format.html { redirect_to @upload, :notice => 'Upload was successfully created.' }
         #format.json { render :json => @upload, :status => :created, :location => @upload }

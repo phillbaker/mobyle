@@ -30,18 +30,20 @@ $(function () {
       });
 
       // Load existing files:
-      $.getJSON(fu_elem.prop('action'), function (files) {
-        var fu = fu_elem.data('fileupload'),
-          template;
-        fu._adjustMaxNumberOfFiles(-files.length);
-        console.log(files);
-        template = fu._renderDownload(files)
-          .appendTo($('#fileupload .files'));
-        // Force reflow:
-        fu._reflow = fu._transition && template.length &&
-          template[0].offsetWidth;
-        template.addClass('in');
-        $('#loading').remove();
-      });
+      if(fu_elem.find('.files').data('index') === true) {
+        $.getJSON(fu_elem.prop('action'), function (files) {
+          var fu = fu_elem.data('fileupload'),
+            template;
+          fu._adjustMaxNumberOfFiles(-files.length);
+          console.log(files);
+          template = fu._renderDownload(files)
+            .appendTo($('#fileupload .files'));
+          // Force reflow:
+          fu._reflow = fu._transition && template.length &&
+            template[0].offsetWidth;
+          template.addClass('in');
+          $('#loading').remove();
+        });
+      }
     }
 });

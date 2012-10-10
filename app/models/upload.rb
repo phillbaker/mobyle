@@ -31,6 +31,16 @@ class Upload
     self.name = File.basename(self.upload_file_name, '.*') # Default initial name
   end
   
+  def to_jq_upload
+    {
+      :name => self.upload_file_name(),
+      :size => self.upload_file_size(),
+      :url => self.upload.url(:original),
+      :delete_url => nil, # Paths not accessible in model, fill it in when we get to the controller: #upload_path(@upload),
+      :delete_type => 'DELETE'
+    }
+  end
+  
 end
 
 class Avatar < Upload; end #TODO Class for (only) images associated with Contacts; belongs_to :User
