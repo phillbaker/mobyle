@@ -21,6 +21,11 @@ class Group
                         :method => :cannot_be_made_a_child_of_self,
                         :unless => :new?
   
+  # A convenience accessor for all of the types of objects that belong to this group
+  def items
+    children().to_a + contacts().to_a + file_uploads().to_a
+  end
+  
   protected
 
     def cannot_be_made_a_child_of_self
