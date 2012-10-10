@@ -35,4 +35,18 @@
 	<%#TODO need some way to blend these together? (ie sort all of them by name); okay for now as we'll have separate groups for each %>
 	<%= render 'contacts/contacts' %>
 	<%= render 'file_uploads/file_uploads' %>
+	<% if @group.items.empty? %>
+		<tr>
+			<td colspan="4">
+				There's nothing here yet! :[.
+				<div class="arrow-box pull-right">
+					Make an item!
+				</div>
+			</td>
+		</tr>
+		<%# add in another row to get the offsetting zebra stripe, make it look balanced %>
+		<tr>
+			<td colspan="4"></td>
+		</tr>
+	<% end %>
 </table>
