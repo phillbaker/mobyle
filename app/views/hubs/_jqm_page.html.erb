@@ -1,4 +1,4 @@
-<div data-role="page" id="<%= type %>-<%= page.id %>">
+<div class="jqm-page" data-role="page" id="<%= type %>-<%= page.id %>">
 	<div data-role="header">
 		<h1><%= page.name %></h1>
 		<%- if defined? back -%>
@@ -11,7 +11,7 @@
 		<%= yield %>
 	</div>
 	
-	<div data-role="footer">
+	<div class="footer" data-role="footer">
 		<%= footer || "&nbsp;".html_safe %>
 	</div>
 </div>

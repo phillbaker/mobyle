@@ -1,13 +1,17 @@
 <%- unless group.items.empty? -%>
-	<ul data-role="listview" data-inset="true" data-filter="true" data-filter-placeholder="Search people..." data-autodividers="true">
+	<ul data-role="listview" data-inset="true" data-filter="true" data-filter-placeholder="Filter..." data-autodividers="true">
 		<%- group.children.each do |child| -%>
 			<li><a href="#group-<%= child.id %>"><%= child.name %></a></li>
 		<%- end -%>
 		<%- group.contacts.each do |contact| -%>
-			<li data-icon="phone"><a href="tel:<%= contact.telephone %>">
-				<h3><%= contact.name %></h3>
-				<p><strong><%= contact.email %></strong></p>
-			</a></li>
+			<li class="contact" data-icon="phone">
+				<a class="link-main" href="tel:<%= contact.telephone %>">
+					<h3 class=""><%= contact.name %></h3>
+					<%# Eh...placeholder, not a great solution. Move to a collapsible list format, with 1 row per contact type, or buttons in the row, see: http://jquerymobile.com/demos/1.2.0/docs/lists/lists-collapsible.html or with split buttons: http://jquerymobile.com/demos/1.2.0/docs/lists/lists-themes.html %>
+					<% unless contact.email.blank? %> <p class="more"><strong>&nbsp;</strong></p><% end %>
+				</a>
+				<% unless contact.email.blank? %><span class="more"><a href="mailto:<%= contact.email %>"><strong><%= contact.email %></strong></a></span><% end %>
+			</li>
 		<%- end -%>
 		<%- group.file_uploads.each do |file_upload| -%>
 			<li data-icon="file"><a href="<%= file_upload.upload.url %>" rel="external"><%= file_upload.name %></a></li>
