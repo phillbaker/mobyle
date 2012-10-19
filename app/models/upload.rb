@@ -17,10 +17,7 @@ class Upload
   property :upload_file_size, Integer
   property :upload_updated_at, DateTime
   
-  property :created_at, DateTime
-  property :created_on, Date
-  property :updated_at, DateTime
-  property :updated_on, Date
+  timestamps :at
   
   # Turn on Single Table Inheritance (STI)
   property :type, Discriminator, :required => false

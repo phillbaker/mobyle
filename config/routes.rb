@@ -6,11 +6,12 @@ Ihub::Application.routes.draw do
       resources :contacts
       resources :file_uploads
       
-      #resources :groups #? do for nested?, :only => [:new, :create, :show...]
-      # get 'new', :on => :member # => 'groups#new', but is /hubs/:hub_id/groups/:id(.:format)
-      # hub_group_subgroup GET    /hubs/:hub_id/groups/:group_id/:id/new(.:format)           groups#new
       #  TODO would like the name to be NEW_hub_group_subgroup...
-      get 'new' => 'groups#new', :as => 'subgroup'
+      get 'new' => 'groups#new', :as => 'subgroup' #/hubs/:hub_id/groups/:group_id/new
+      member do 
+        get 'import'
+        post 'upload'
+      end
     end
     
     member do

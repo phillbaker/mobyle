@@ -56,10 +56,7 @@ class User
 
   #TODO why aren't these default?
   property :id, Serial
-  property :created_at, DateTime
-  property :created_on, Date
-  property :updated_at, DateTime
-  property :updated_on, Date
+  timestamps :at
   
   has n, :hubs#TODO, :dependent => :destroy
   

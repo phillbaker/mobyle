@@ -3,10 +3,7 @@ class Group
   self.raise_on_save_failure = true
   
   property :id, Serial
-  property :created_at, DateTime
-  property :created_on, Date
-  property :updated_at, DateTime
-  property :updated_on, Date
+  timestamps :at
   
   property :name, String
   

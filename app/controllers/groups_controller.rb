@@ -76,17 +76,12 @@ class GroupsController < ApplicationController
     # @group.parent_id is in the form if we need it
     @group.hub = @hub
     
-    p @group
-    p @group.valid?
-    
     respond_to do |format|
       result = @group.save
       if result
         format.html { redirect_to [@hub, @group], :notice => 'Group was successfully created.' }
         format.json { render :json => @group, :status => :created, :location => @group }
       else
-        p result
-        p @group.errors
         format.html { render :action => "new" }
         format.json { render :json => @group.errors, :status => :unprocessable_entity }
       end
@@ -116,6 +111,34 @@ class GroupsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to hub_groups_url }
       format.json { head :no_content }
+    end
+  end
+  
+  # GET /hubs/:hub_id/groups/:id/import
+  # GET /hubs/:hub_id/groups/:id/import.json
+  def import
+    add_breadcrumb 'Your hubs', :hubs_path
+    add_breadcrumb @hub.name, hub_path(@hub)
+    add_breadcrumb @group.name, hub_group_path(@group)
+    add_breadcrumb 'Import contacts', import_hub_group_path(@hub, @group)
+    
+    append_title 'Import contacts'
+    
+    respond_to do |format|
+      format.html # import.html.erb
+      format.json { render :json => @group }
+    end
+  end
+  
+  # POST /hubs/:hub_id/groups/:id/upload
+  # POST /hubs/:hub_id/groups/:id/upload.json
+  def upload # be ready for when we can accept an actual file directly uploaded instead of copy/paste
+    
+    Contact params[:import]
+    
+    respond_to do |format|
+      format.html # import.html.erb
+      format.json { render :json => @group }
     end
   end
 end

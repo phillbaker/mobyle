@@ -1,7 +1,12 @@
 require 'bundler/capistrano'
 require 'config/deploy/notifier.rb'
 BAD_BUNDLE = false
+NOTIFY = false
 load 'deploy/assets' unless BAD_BUNDLE
+
+#TODO suppress warnings on tar extract on remote (http://www.gnu.org/software/tar/manual/html_section/warnings.html)
+# --warning=no-timestamp #cd /var/www/ihub.phillbaker.com/releases && tar xzf /tmp/20121010031941.tar.gz && rm /tmp/20121010031941.tar.gz
+# deploy:update_code
 
 set :application, "ihub.phillbaker.com"
 set :deploy_to, "/var/www/#{application}"
@@ -127,5 +132,4 @@ namespace :deploy do
 end
 
 # Setup the emails, and after deploy hook
-after "deploy", "deploy:notify"
-
+after "deploy", "deploy:notify" if NOTIFY

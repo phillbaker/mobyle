@@ -46,7 +46,7 @@ end
 gem 'jquery-fileupload-rails'
 gem 'jquery-rails', '~> 2.0.1'
 gem 'less-rails-bootstrap'
-gem 'jquery_mobile_rails'
+gem 'jquery_mobile_rails', :git => 'git://github.com/phillbaker/jquery-mobile-rails.git', :branch => 'fix-gem-require'
 
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.1'
@@ -64,9 +64,15 @@ group :development do
   gem 'thin'
 end
 
+# Put dm-fixture in dev + test to make its rake tasks available by default
+group :development, :test do
+  gem 'dm-fixture', :path => '../dm-fixture', :require => 'dm-fixture'
+end
+
 group :test do
   # Pretty printed test output
   gem 'turn', '~> 0.9.4', :require => false
+  
   # For ActiveRecord::Fixtures
   # gem 'activerecord', RAILS_VERSION, :require => 'active_record'
   # gem 'sqlite3'
