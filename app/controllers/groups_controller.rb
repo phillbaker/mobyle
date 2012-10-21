@@ -123,6 +123,14 @@ class GroupsController < ApplicationController
     
     append_title 'Import contacts'
     
+    @example_data = <<-IMPORT
+Email	Telephone	Name
+jon.doe@example.com	(123) 456-7890	Jon Doe
+jane_doe@example.com	(234) 567-8901	Jane Doe
+foo+bar@example.com	(345) 678-9012	Foo Bar
+IMPORT
+    @example_data.chop!
+    
     respond_to do |format|
       format.html # import.html.erb
       format.json { render :json => @group }

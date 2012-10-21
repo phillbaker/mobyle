@@ -10,7 +10,24 @@
 				<%= text_area_tag 'import', nil, :class => 'span9' %>
 			</div>
 			<div class="help-block offset2">
-				Tips: The first row must have headers with title specifying the name of the column. Current accepted headers are: name (also first/last), phone (or any variant: cell-phone, telephone, etc.) and e-mail (or any variant: email, e-mail address, etc.).
+				<p class="muted"><span class="label label-info">Tips</span> 
+					The first row must have headers with title specifying the name of the column. Current accepted headers are: <strong>name</strong> (also first/last), <strong>phone</strong> (or any variant: cell-phone, telephone, etc.) and <strong>e-mail</strong> (or any variant: email, e-mail address, etc.).
+				</p>
+				<div class="accordion" id="help-accordion">
+					<div class="accordion-group">
+						<div class="accordion-heading">
+							<a class="accordion-toggle" data-toggle="collapse" data-parent="#help-accordion" href="#help-accordion-table">
+								Example data
+							</a>
+						</div>
+						<div id="help-accordion-table" class="accordion-body collapse">
+							<div class="accordion-inner">
+								<%= text_area_tag 'help-accordion-example', @example_data, :class => 'span9' %>
+								<p>You can copy &amp; paste this example data into the form above to create these contacts.</p>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
   </div>
