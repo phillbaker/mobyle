@@ -66,7 +66,7 @@ end
 
 # Put dm-fixture in dev + test to make its rake tasks available by default
 group :development, :test do
-  gem 'dm-fixture', :path => '../dm-fixture', :require => 'dm-fixture'
+  gem 'dm-fixtures'#, :path => '../dm-fixtures', :require => 'dm-fixtures'
 end
 
 group :test do
