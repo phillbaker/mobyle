@@ -77,8 +77,7 @@ class GroupsController < ApplicationController
     @group.hub = @hub
     
     respond_to do |format|
-      result = @group.save
-      if result
+      if @group.save
         format.html { redirect_to [@hub, @group], :notice => 'Group was successfully created.' }
         format.json { render :json => @group, :status => :created, :location => @group }
       else
@@ -133,12 +132,16 @@ class GroupsController < ApplicationController
   # POST /hubs/:hub_id/groups/:id/upload
   # POST /hubs/:hub_id/groups/:id/upload.json
   def upload # be ready for when we can accept an actual file directly uploaded instead of copy/paste
-    
-    Contact params[:import]
+    array_of_hashes = Contact.parse_tab_delimited(params[:import])
     
     respond_to do |format|
-      format.html # import.html.erb
-      format.json { render :json => @group }
+      if Contact.import(array_of_hashes, @group)
+        format.html { redirect_to [@hub, @group], :notice => 'Contacts were successfully imported.' }
+        format.json { render :json => @group, :status => :created, :location => @group }
+      else
+        format.html { render :action => "import" }
+        format.json { render :json => @group.errors, :status => :unprocessable_entity }
+      end
     end
   end
 end

@@ -1,7 +1,7 @@
-== foo-Hub-bar
+== foo-hub-bar
 
-A hierarchical 
+A hierarchical mobile first content management system. Initially for contacts and files, the goal is to make an organization or individual's information easily accessible on mobile devices.
 
 == License
 
-(c) Copyright 2012 Phillip Baker
+(c) Copyright 2012 Phillip Baker. All rights reserved.

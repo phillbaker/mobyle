@@ -1,5 +1,5 @@
 <div class="jqm-page" data-role="page" id="<%= type %>-<%= page.id %>">
-	<div data-role="header">
+	<div data-role="header" data-position="fixed">
 		<h1><%= page.name %></h1>
 		<%- if defined? back -%>
 			<a href="#" data-icon="arrow-l" data-rel="back"><%= back %></a>
@@ -7,7 +7,7 @@
 	</div>
 	
 	<div data-role="content">
-		<%# The page content. A <ul>.%>
+		<%# The page content. %>
 		<%= yield %>
 	</div>
 	

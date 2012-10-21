@@ -1,11 +1,16 @@
-<%= simple_form_for([@hub, @group], :url => upload_hub_group_path(@hub, @group), :html => { :class => 'form-horizontal' }) do |f| %>
+<h2>Import contacts</h2>
+
+<%= simple_form_for([@hub, @group], :url => upload_hub_group_path(@hub, @group), :method => :post, :html => { :class => 'form-horizontal' }) do |f| %>
 	<%= f.error_notification %>
 
 	<div class="form-inputs">
 		<div class="control-group">
-			<label class="control-label" for="import">Paste a copied Excel spread sheet here</label>
+			<label class="control-label" for="import">Copy and paste an Excel spread sheet <span class="label label-warning">Experimental</span></label>
 			<div class="controls">
 				<%= text_area_tag 'import', nil, :class => 'span9' %>
+			</div>
+			<div class="help-block offset2">
+				Tips: The first row must have headers with title specifying the name of the column. Current accepted headers are: name (also first/last), phone (or any variant: cell-phone, telephone, etc.) and e-mail (or any variant: email, e-mail address, etc.).
 			</div>
 		</div>
   </div>

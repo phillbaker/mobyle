@@ -6,7 +6,7 @@ class Contact
   timestamps :at
   
   property :name, String
-  property :telephone, Integer #TODO make sure we have 10 digits
+  property :telephone, Integer #TODO make sure we have 10 digits, but also make sure we can leave it blank
   property :email, String
   
   belongs_to :group
@@ -58,14 +58,17 @@ class Contact
       end
     end
     
-    def import array_of_hashes
+    def import array_of_hashes, group
       # speed up bulk inserts via transactions, but #TODO run on delayed_job or resque
-      Contact.transaction do
+      #Contact.transaction do
         array_of_hashes.each do |hash|
-          Contact.create(hash)
+          contact = Contact.new(hash)
+          contact.group = group
+          contact.save
         end
-      end #transaction
+      #end #transaction
       #should commit itself #TODO if there's anything wrong and we throw a formatting error, where does it get reported? (And it means that the entire transaction doesn't occur - would like some atomicity)
+      return true # TODO return result of transaction, until then, save should raise an error on failure
     end
     
   end
