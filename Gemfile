@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source :rubygems
 
 RAILS_VERSION = '~> 3.2.8'
 DM_VERSION    = '~> 1.2.0'
@@ -26,7 +26,7 @@ gem 'dm-serializer',     '~> 1.2.0'
 gem 'dm-devise',         '~> 2.1.0'
 gem 'data_objects',      '0.10.8' # data_objects (0.10.9) doesn't like compiling on ubuntu...
 gem 'dm-is-tree'          
-gem 'dm-paperclip', :git => 'git://github.com/phillbaker/dm-paperclip.git' # Use in place of regular paperclip for jquery-fileupload-rails
+gem 'dm-paperclip', :git => 'git://github.com/phillbaker/dm-paperclip.git', :branch => 'bug-dm1.2.0-rails3.2.8-ruby1.8.7' # Use in place of regular paperclip for jquery-fileupload-rails
 
 gem 'cancan'
 gem 'simple_form'
@@ -54,8 +54,11 @@ gem 'bcrypt-ruby', '~> 3.0.1'
 # Use unicorn as the web server
 # gem 'unicorn', '~> 4.2.1'
 
-# Deploy with Capistrano
-gem 'capistrano', '~> 2.11.2'
+group :deploy do
+  # Deploy with Capistrano
+  # gem 'highline', '1.6.13' #1.6.14
+  # gem 'capistrano', '~>2.11.2' #'2.13.0'
+end
 
 # To use debugger
 # gem 'ruby-debug19', '~> 0.11.6', :require => 'ruby-debug'
@@ -66,7 +69,7 @@ end
 
 # Put dm-fixture in dev + test to make its rake tasks available by default
 group :development, :test do
-  gem 'dm-fixtures'#, :path => '../dm-fixtures', :require => 'dm-fixtures'
+  gem 'dm-fixtures'
 end
 
 group :test do

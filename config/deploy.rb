@@ -1,8 +1,10 @@
 require 'bundler/capistrano'
-require 'config/deploy/notifier.rb'
-BAD_BUNDLE = false
-NOTIFY = false
-load 'deploy/assets' unless BAD_BUNDLE
+# require 'config/deploy/notifier.rb'
+# BAD_BUNDLE = false
+# NOTIFY = false
+require 'rubygems'
+require 'bundler/setup'
+load 'deploy/assets' #unless BAD_BUNDLE #== bundle exec rake RAILS_ENV=production RAILS_GROUPS=assets assets:precompile
 
 #TODO suppress warnings on tar extract on remote (http://www.gnu.org/software/tar/manual/html_section/warnings.html)
 # --warning=no-timestamp #cd /var/www/ihub.phillbaker.com/releases && tar xzf /tmp/20121010031941.tar.gz && rm /tmp/20121010031941.tar.gz
@@ -27,8 +29,7 @@ set :shared_config_path, "#{shared_path}/config"
 
 role :web, "173.230.155.35"                          # Your HTTP server, Apache/etc
 role :app, "173.230.155.35"                          # This may be the same as your `Web` server
-role :db,  "173.230.155.35", :primary => true        # This is where Rails migrations will run
-#role :db,  "your slave db-server here"
+role :db,  "173.230.155.35", :primary => true
 
 namespace :deploy do
   task :start, :roles => :app do
@@ -111,25 +112,25 @@ end
 after "deploy:setup", "configuration:make_default_folders"
 after "deploy:setup", "configuration:deploy_apache_configuration"
 
-after "deploy", 'deploy:migrate' unless BAD_BUNDLE # Auto upgrade tables, for dm
+after "deploy", 'deploy:migrate' #unless BAD_BUNDLE # Auto upgrade tables, for dm
 
 if use_sqlite3
   after "deploy:setup", "sqlite3:make_shared_folder"
   after "deploy:setup", "sqlite3:build_configuration"
   
   #additional 
-  # after "deploy:cold", "db:seed" #TODO setup this up for dm
+  # after "deploy:cold", "db:seed" #TODO setup this up for dm, basic root user
   
   before "deploy:create_symlink", "sqlite3:link_configuration_file"
 end
 
 # Create the task to send the notification
-namespace :deploy do
-  desc "Email notifier"
-  task :notify do
-    Notifier.deploy_notification(self).deliver
-  end
-end
+# namespace :deploy do
+#   desc "Email notifier"
+#   task :notify do
+#     Notifier.deploy_notification(self).deliver
+#   end
+# end
 
 # Setup the emails, and after deploy hook
-after "deploy", "deploy:notify" if NOTIFY
+# after "deploy", "deploy:notify" if NOTIFY
