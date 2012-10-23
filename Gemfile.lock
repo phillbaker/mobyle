@@ -1,6 +1,7 @@
 GIT
   remote: git://github.com/phillbaker/dm-paperclip.git
-  revision: b474d2860625d3afe09e5492e8a7d81ca04292d5
+  revision: 1ebd0898b4bc669a63bb991d4a885a21be6511d7
+  branch: bug-dm1.2.0-rails3.2.8-ruby1.8.7
   specs:
     dm-paperclip (2.4.1)
       dm-core (>= 1.2.0)
@@ -14,6 +15,14 @@ GIT
   specs:
     jquery_mobile_rails (1.2.1)
       railties (>= 3.1.0)
+
+PATH
+  remote: ../devise_invitable
+  specs:
+    devise_invitable (1.1.0)
+      actionmailer (~> 3.0)
+      devise (>= 2.1.0)
+      railties (~> 3.0)
 
 GEM
   remote: http://rubygems.org/
@@ -215,6 +224,7 @@ DEPENDENCIES
   cancan
   coffee-rails (~> 3.2.2)
   data_objects (= 0.10.8)
+  devise_invitable!
   dm-aggregates (~> 1.2.0)
   dm-constraints (~> 1.2.0)
   dm-core (~> 1.2.0)

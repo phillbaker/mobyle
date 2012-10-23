@@ -21,6 +21,10 @@ Ihub::Application.routes.draw do
 
   # TODO for newsletter subscription/etc. => /unsubscribe?email=pbaker%40retrodict.com&validateCode=IBZBD
   devise_for :users
+  scope "/users" do
+    post '/invite' => 'users#invite', :as => 'user_invite'
+    #TODO get 'demo' => 'users#evaluate' #or #try ?
+  end
   
   scope "/admin" do
     #TODO do non-nested resources for all objects so admin can go in and fix, or support can go in and manually add stuff for folks

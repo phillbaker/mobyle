@@ -5,6 +5,7 @@ require File.expand_path('../boot', __FILE__)
 # config/environments/development.rb and config/environments/test.rb files):
 require 'action_controller/railtie'
 require 'dm-rails/railtie'
+require 'dm-rails/mass_assignment_security'
 require 'sprockets/railtie'
 require 'action_mailer/railtie'
 require 'active_resource/railtie'

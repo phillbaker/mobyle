@@ -85,4 +85,22 @@ class UsersController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  # POST /users/invite
+  # POST /users/invite.json
+  def invite
+    success = User.invite!(:email => params[:email]) #TODO sanitize the input here
+
+    respond_to do |format|
+      if success
+        #TODO do a thankyou?
+        format.html { redirect_to @user, :notice => 'User was successfully created.' }
+        format.json { render :json => @user, :status => :created, :location => @user }
+      else
+        #TODO do an error page? how do we return them to their originating page?
+        format.html { render :action => "new" }
+        format.json { render :json => @user.errors, :status => :unprocessable_entity }
+      end
+    end
+  end
 end

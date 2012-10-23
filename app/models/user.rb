@@ -1,12 +1,13 @@
 class User
   include DataMapper::Resource
-  # Don't do for devise-handled stuff: self.raise_on_save_failure = true
+  # Don't do for devise-handled stuff: 
+  self.raise_on_save_failure = true
   
   # Include default devise modules. Others available are:
-  # :token_authenticatable, :confirmable,
+  # :token_authenticatable,
   # :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable, #:invitable, (not dm-compatible)
-         :recoverable, :rememberable, :trackable, :validatable
+  devise :invitable, :database_authenticatable, :registerable, :invitable,
+         :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
   ## Database authenticatable
   property :email,              String, :required => true, :default => "", :length => 255
@@ -30,10 +31,10 @@ class User
   property :password_salt, String#, :null => true
 
   ## Confirmable
-  # property :confirmation_token,   String
-  # property :confirmed_at,         DateTime
-  # property :confirmation_sent_at, DateTime
-  # property :unconfirmed_email,    String # Only if using reconfirmable
+  property :confirmation_token,   String
+  property :confirmed_at,         DateTime
+  property :confirmation_sent_at, DateTime
+  property :unconfirmed_email,    String # Only if using reconfirmable
 
   ## Lockable
   # property :failed_attempts, Integer, :default => 0 # Only if lock strategy is :failed_attempts
@@ -58,7 +59,10 @@ class User
   property :id, Serial
   timestamps :at
   
-  has n, :hubs#TODO, :dependent => :destroy
+  has n, :hubs #TODO, :dependent => :destroy # Or :dependent => :trash
+  
+  # Mass assignable properties
+  # attr_accessible :name, :email, ... #TODO
   
   def admin?
     self.admin || self.id == 1 # User with ID of 1 is superuser

@@ -7,4 +7,6 @@
 #   Mayor.create(:name => 'Emanuel', :city => cities.first)
 
 # Use bang to skip validations
-User.create!(:name => 'root', :email => 'root@app', :password => 'gerbilclockrunningwalnut')
+root = User.create!(:name => 'root', :email => 'root@app', :password => 'gerbilclockrunningwalnut')
+root.confirm!
+root.save

@@ -38,8 +38,7 @@
 			<p>We're super geeks, but we're not Superman. To make sure that everyone who's signing up for our site has a great experience off of the bat, we inviting people to join on a rolling basis as we have resources. If you give us your e-mail, we'll let you know when your slot is ready and give you first opportunity to claim that spot.</p>
 		</div>
 		<div class="span5 offset1">
-			<%#= render 'devise/registrations/email_capture' %>
-			<%= simple_form_for(@user, :html => { :class => 'form-inline' }) do |f| %>
+			<%= simple_form_for(@user, :url => user_invite_path, :method => :post, :html => { :class => 'form-inline' }) do |f| %>
 				<label style="display: <%= "#{@user.errors.any? ? 'none' : 'block'}" %>;">Launching soon.</label>
 
 				<% if @user.errors.any? %>
