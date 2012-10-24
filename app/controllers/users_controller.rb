@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+  skip_before_filter :authenticate_user!, :only => :invite_by_newsletter
+  skip_authorization_check :only => :invite_by_newsletter
+  
   load_and_authorize_resource
   
   # GET /users
@@ -88,17 +91,20 @@ class UsersController < ApplicationController
   
   # POST /users/invite
   # POST /users/invite.json
-  def invite
-    success = User.invite!(:email => params[:email]) #TODO sanitize the input here
-
+  def invite_by_newsletter
+    attributes = params[:user] #TODO sanitize the input here
+    attributes[:invited_by_type] = 'newsletter'
+    @user = User.invite!(attributes) 
+    
     respond_to do |format|
-      if success
-        #TODO do a thankyou?
-        format.html { redirect_to @user, :notice => 'User was successfully created.' }
+      # TODO this assumes always coming from 
+      if @user.errors.blank?
+        #TODO do a thankyou? 
+        format.html { redirect_to root_path, :notice => 'E-mail submission successful. Thanks!' }
         format.json { render :json => @user, :status => :created, :location => @user }
       else
         #TODO do an error page? how do we return them to their originating page?
-        format.html { render :action => "new" }
+        format.html { render 'home/index' }
         format.json { render :json => @user.errors, :status => :unprocessable_entity }
       end
     end

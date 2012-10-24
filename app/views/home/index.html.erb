@@ -41,9 +41,9 @@
 			<%= simple_form_for(@user, :url => user_invite_path, :method => :post, :html => { :class => 'form-inline' }) do |f| %>
 				<label style="display: <%= "#{@user.errors.any? ? 'none' : 'block'}" %>;">Launching soon.</label>
 
-				<% if @user.errors.any? %>
-				<div class="alert alert-error">Please enter a valid email</div>
-				<% end %>
+				<%- if @user.errors.any? -%>
+					<div class="alert alert-error">Please enter a valid email</div>
+				<%- end -%>
 
 				<div class="input-prepend"><span class="add-on"><i class="icon-envelope"></i></span>
 				<%= f.text_field :email, :placeholder => 'Your email address...' %>

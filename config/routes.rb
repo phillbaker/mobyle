@@ -22,7 +22,7 @@ Ihub::Application.routes.draw do
   # TODO for newsletter subscription/etc. => /unsubscribe?email=pbaker%40retrodict.com&validateCode=IBZBD
   devise_for :users
   scope "/users" do
-    post '/invite' => 'users#invite', :as => 'user_invite'
+    post '/invite' => 'users#invite_by_newsletter', :as => 'user_invite'
     #TODO get 'demo' => 'users#evaluate' #or #try ?
   end
   

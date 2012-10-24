@@ -27,7 +27,7 @@ gem 'dm-devise',         '~> 2.1.0'
 gem 'data_objects',      '0.10.8' # data_objects (0.10.9) doesn't like compiling on ubuntu...
 gem 'dm-is-tree'          
 gem 'dm-paperclip', :git => 'git://github.com/phillbaker/dm-paperclip.git', :branch => 'bug-dm1.2.0-rails3.2.8-ruby1.8.7' # Use in place of regular paperclip for jquery-fileupload-rails
-gem 'devise_invitable', :path => '../devise_invitable' # :git => 'git://github.com/phillbaker/devise_invitable.git', :branch => 'datamapper-compatibility' #TODO => push as dm-invitable?
+gem 'devise_invitable', :git => 'git://github.com/phillbaker/devise_invitable.git', :branch => 'datamapper-compatibility' #TODO => push as dm-invitable?
 
 gem 'cancan'
 gem 'simple_form'
