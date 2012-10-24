@@ -3,7 +3,8 @@ class Contact
   self.raise_on_save_failure = true
 
   property :id, Serial
-  timestamps :at
+  property :created_at, DateTime
+  property :updated_at, DateTime
   
   property :name, String
   property :telephone, Integer #TODO make sure we have 10 digits, but also make sure we can leave it blank

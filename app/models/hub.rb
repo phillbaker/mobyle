@@ -5,7 +5,9 @@ class Hub
   self.raise_on_save_failure = true
   
   property :id, Serial
-  timestamps :at
+  
+  property :created_at, DateTime
+  property :updated_at, DateTime
   
   property :name, String
   property :mobile_footer, String, :length => 255

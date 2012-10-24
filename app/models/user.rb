@@ -7,11 +7,11 @@ class User
   # :token_authenticatable,
   # :lockable, :timeoutable and :omniauthable
   devise :invitable, :database_authenticatable, :registerable, :invitable,
-         :recoverable, :rememberable, :trackable, :validatable, :confirmable
+         :recoverable, :rememberable, :trackable, :confirmable, :validatable
 
   ## Database authenticatable
-  property :email,              String, :required => true, :default => "", :length => 255
-  property :encrypted_password, String, :required => true, :default => "", :length => 255
+  property :email,              String, :required => true, :default => "", :length => 255 
+  property :encrypted_password, String, :default => "", :length => 255 #Not :required => true, b/c then it's a NOT NULL field and we won't be able to save
 
   ## Recoverable
   property :reset_password_token,   String
@@ -57,12 +57,21 @@ class User
 
   #TODO why aren't these default?
   property :id, Serial
-  timestamps :at
+  #timestamps :at # => this makes the timestamp columns NOT NULL in the db, that screws stuff up
+  property :created_at, DateTime
+  property :updated_at, DateTime
   
   has n, :hubs #TODO, :dependent => :destroy # Or :dependent => :trash
   
   # Mass assignable properties
   # attr_accessible :name, :email, ... #TODO
+  
+  # Devise validations, customized for invitable
+  # validates_uniqueness_of   :email,     :case_sensitive => false, :allow_blank => true, :if => :email_changed?
+  # validates_format_of       :email,     :with  => Devise.email_regexp, :allow_blank => true, :if => :email_changed?
+  # validates_presence_of     :password,  :on => :create
+  # validates_confirmation_of :password,  :on => :create
+  # validates_length_of       :password,  :within => Devise.password_length, :allow_blank => true
   
   def admin?
     self.admin || self.id == 1 # User with ID of 1 is superuser
