@@ -23,6 +23,8 @@ class HubsController < ApplicationController
     append_title @hub.name
     
     @groups = @hub.groups(:parent_id => nil)
+    @private_hub_link = root_url + @hub.private_link
+    @mail_hub_link = "mailto:?subject=thisisthesubject&body=#{@private_hub_link}"
     
     respond_to do |format|
       format.html # show.html.erb

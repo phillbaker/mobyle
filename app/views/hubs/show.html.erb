@@ -6,15 +6,23 @@
 	<div class="toolbar-buttons-other pull-right">
 	</div>
 </div>
-<div class="well row hud">
-	<%= link_to 'Mobile preview', mobile_hub_path(@hub), :class => 'btn pull-right btn-primary' %>
-	<div class="input-prepend">
-		<span class="add-on">Secret link</span>
-		<%# Don't actually make this disabled, that kills click events on the input element %>
-		<%= text_field_tag :private_link, root_url + @hub.private_link, :readonly => :readonly, :class => 'span8 link-distribution' %>
+<div class="row hud">
+	<div class="well form-inline">
+		<div class="control-group">
+			<div class="controls">
+				<div class="input-prepend input-append">
+					<span class="add-on">Secret link</span>
+					<%# Don't actually make this disabled, that kills click events on the input element %>
+					<%= text_field_tag :private_link, @private_hub_link, :readonly => :readonly, :class => 'input-xxlarge link-distribution' %>
+					<%= link_to 'E-mail', @mail_hub_link, :class => 'btn' %>
+				</div>
+				<%= link_to 'Mobile preview', mobile_hub_path(@hub), :class => 'btn btn-primary' %>
+				<span class="help-block small">Copy this link and send it to anyone you'd like to use this hub.</span>
+			</div>
+		</div>
 	</div>
-	<span class="help-block small">Copy this link and send it to anyone you'd like to use this hub.</span>
-
+	
+	</div>
 </div>
 	
 </div>
