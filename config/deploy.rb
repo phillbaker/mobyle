@@ -28,8 +28,8 @@ set :shared_database_path, "#{shared_path}/db"
 set :shared_config_path, "#{shared_path}/config"
 
 role :web, "173.230.155.35"                          # Your HTTP server, Apache/etc
-# role :app, "173.230.155.35"                          # This may be the same as your `Web` server
-# role :db,  "173.230.155.35", :primary => true
+role :app, "173.230.155.35"                          # This may be the same as your `Web` server
+role :db,  "173.230.155.35", :primary => true
 
 namespace :deploy do
   task :start, :roles => :app do
@@ -105,7 +105,7 @@ end
 namespace :bundle do
   task :install do
     # Same as default, just don't be quiet
-    run "cd #{current_release} && bundle install --verbose --gemfile #{current_release}/Gemfile --path #{shared_path}/bundle --deployment --without development test" unless BAD_BUNDLE
+    run "cd #{current_release} && bundle install --verbose --gemfile #{current_release}/Gemfile --path #{shared_path}/bundle --deployment --without development test" #unless BAD_BUNDLE
   end
 end
 

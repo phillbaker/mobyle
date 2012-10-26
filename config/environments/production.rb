@@ -49,7 +49,19 @@ Ihub::Application.configure do
   config.assets.precompile += %w( mobile/mobile.css mobile/mobile.js )
 
   # Disable delivery errors, bad email addresses will be ignored
-  # config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.smtp_settings = {:enable_starttls_auto => false }
+  config.action_mailer.delivery_method = :smtp
+  ActionMailer::Base.smtp_settings = {
+    :address        => 'localhost',
+    :port           => 25,
+    :domain         => 'ihub.phillbaker.com',
+    #  :perform_deliveries => true,
+    #  :user_name      => 'user',
+    #  :password       => 'secret',
+    #  :authentication => :login
+    :enable_starttls_auto => false
+  }
 
   # Enable threaded mode
   # config.threadsafe!
