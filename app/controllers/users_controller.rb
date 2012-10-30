@@ -97,7 +97,7 @@ class UsersController < ApplicationController
     @user = User.invite!(attributes) 
     
     respond_to do |format|
-      # TODO this assumes always coming from 
+      # TODO this assumes always coming from front page
       if @user.errors.blank?
         #TODO do a thankyou? 
         format.html { redirect_to root_path, :notice => 'E-mail submission successful. Thanks!' }

@@ -24,7 +24,8 @@ class HubsController < ApplicationController
     
     @groups = @hub.groups(:parent_id => nil)
     @private_hub_link = root_url + @hub.private_link
-    @mail_hub_link = "mailto:?subject=#{@hub.name}%20Hub%Private%20Link&body=Here's%20the%20link%20to%20#{@hub.name},%20only%20people%20with%20this%20link%20can%20access%20the%20hub.%20#{@private_hub_link}"
+    #TODO use either CGI escape or a rails helper to url escape this
+    @mail_hub_link = "mailto:?subject=#{@hub.name}%20Hub%20Private%20Link&body=Here's%20the%20link%20to%20#{@hub.name},%20only%20people%20with%20this%20link%20can%20access%20the%20hub.%20#{@private_hub_link}"
     
     respond_to do |format|
       format.html # show.html.erb
