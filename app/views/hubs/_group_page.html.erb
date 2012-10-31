@@ -5,16 +5,16 @@
 		<%- end -%>
 		<%- group.contacts.each do |contact| -%>
 			<li class="contact" data-icon="phone">
-				<a class="link-main" href="tel:<%= contact.telephone %>">
-					<h3 class=""><%= contact.name %></h3>
+				<a class="link-main" href="tel:<%= contact.telephone -%>">
+					<h3 class=""><%= contact.name -%></h3>
 					<%# Eh...placeholder, not a great solution. Move to a collapsible list format, with 1 row per contact type, or buttons in the row, see: http://jquerymobile.com/demos/1.2.0/docs/lists/lists-collapsible.html or with split buttons: http://jquerymobile.com/demos/1.2.0/docs/lists/lists-themes.html %>
-					<% unless contact.email.blank? %> <p class="more"><strong>&nbsp;</strong></p><% end %>
+					<%- unless contact.email.blank? -%> <p class="more"><strong>&nbsp;</strong></p><%- end -%>
 				</a>
-				<% unless contact.email.blank? %><span class="more"><a href="mailto:<%= contact.email %>"><strong><%= contact.email %></strong></a></span><% end %>
+				<%- unless contact.email.blank? -%><span class="more"><a href="mailto:<%= contact.email.strip -%>"><strong><%= contact.email.strip -%></strong></a></span><%- end -%>
 			</li>
 		<%- end -%>
 		<%- group.file_uploads.each do |file_upload| -%>
-			<li data-icon="file"><a href="<%= file_upload.upload.url %>" rel="external"><%= file_upload.name %></a></li>
+			<li data-icon="file"><a href="<%= file_upload.upload.url -%>" rel="external"><%= file_upload.name -%></a></li>
 		<%- end -%>
 	</ul>
 <%- else -%>
