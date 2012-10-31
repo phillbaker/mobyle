@@ -1,5 +1,5 @@
 require 'bundler/capistrano'
-# require 'config/deploy/notifier.rb'
+require 'config/deploy/notifier.rb'
 # BAD_BUNDLE = false
 # NOTIFY = false
 require 'rubygems'
@@ -125,12 +125,12 @@ if use_sqlite3
 end
 
 # Create the task to send the notification
-# namespace :deploy do
-#   desc "Email notifier"
-#   task :notify do
-#     Notifier.deploy_notification(self).deliver
-#   end
-# end
+namespace :deploy do
+  desc "Email notifier"
+  task :notify do
+    Notifier.deploy_notification(self).deliver
+  end
+end
 
 # Setup the emails, and after deploy hook
 # after "deploy", "deploy:notify" if NOTIFY
