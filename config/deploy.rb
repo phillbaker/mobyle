@@ -1,9 +1,10 @@
 require 'bundler/capistrano'
-require 'config/deploy/notifier.rb'
 # BAD_BUNDLE = false
 # NOTIFY = false
 require 'rubygems'
 require 'bundler/setup'
+require 'capistrano_colors'
+require 'config/deploy/notifier.rb'
 load 'deploy/assets' #unless BAD_BUNDLE #== bundle exec rake RAILS_ENV=production RAILS_GROUPS=assets assets:precompile
 
 #TODO suppress warnings on tar extract on remote (http://www.gnu.org/software/tar/manual/html_section/warnings.html)

@@ -33,6 +33,9 @@ gem 'cancan'
 gem 'simple_form'
 gem 'breadcrumbs_on_rails'
 
+# Maintenance
+gem 'turnout', :git => 'git://github.com/phillbaker/turnout.git', :branch => 'fix-remove-require' #:path => '../turnout' # has a silly require 'active_record'...
+
 # Gems used only for asset compliation and not required
 # in production environments by default.
 group :assets do
@@ -59,6 +62,7 @@ group :deploy do
   # Deploy with Capistrano
   # gem 'highline', '1.6.13' #1.6.14
   # gem 'capistrano', '~>2.11.2' #'2.13.0'
+  # gem 'capistrano_colors'
 end
 
 # To use debugger
