@@ -50,6 +50,7 @@ end
 gem 'jquery-fileupload-rails'
 gem 'jquery-rails', '~> 2.0.1'
 gem 'less-rails-bootstrap'
+# vs.  twitter-bootstrap-rails ?
 gem 'jquery_mobile_rails', :git => 'git://github.com/phillbaker/jquery-mobile-rails.git', :branch => 'fix-gem-require'
 
 # To use ActiveModel has_secure_password
