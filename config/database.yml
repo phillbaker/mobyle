@@ -2,7 +2,7 @@ defaults: &defaults
   adapter: sqlite
 
 development:
-  database: db/development.db
+  database: db/development.sqlite3
   <<: *defaults
 
   # Add more repositories
@@ -17,9 +17,9 @@ development:
   #     ...
 
 test:
-  database: db/test.db
+  database: db/test.sqlite3
   <<: *defaults
 production:
-  # TODO => db/production not #{name}_production
-  database: db/ihub_production.db
+  database: db/production.sqlite3
+  #database: db/ihub_production.db
   <<: *defaults

@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
   before_filter :authenticate_user!
   check_authorization :unless => :devise_controller?
   before_filter do 
-    @title = 'iHub'
+    @title = 'Mobyle'
   end
 
   def append_title appendage

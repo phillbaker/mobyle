@@ -3,7 +3,7 @@ require 'bundler/capistrano'
 # NOTIFY = false
 require 'rubygems'
 require 'bundler/setup'
-require 'capistrano_colors'
+# require 'capistrano_colors'
 require 'config/deploy/notifier.rb'
 load 'deploy/assets' #unless BAD_BUNDLE #== bundle exec rake RAILS_ENV=production RAILS_GROUPS=assets assets:precompile
 
@@ -11,10 +11,10 @@ load 'deploy/assets' #unless BAD_BUNDLE #== bundle exec rake RAILS_ENV=productio
 # --warning=no-timestamp #cd /var/www/ihub.phillbaker.com/releases && tar xzf /tmp/20121010031941.tar.gz && rm /tmp/20121010031941.tar.gz
 # deploy:update_code
 
-set :application, "ihub.phillbaker.com"
+set :application, "mobyle.phillbaker.com"
 set :deploy_to, "/var/www/#{application}"
 
-set :user, "branch"
+set :user, "capistrano"
 
 set :scm, :git
 set :repository,  "."
@@ -23,7 +23,7 @@ set :copy_strategy, :export
 
 set :use_sqlite3, true
 
-set :notify_emails, ["me@retrodict.com", "fgencorelli@gmail.com"]
+set :notify_emails, ["me@retrodict.com"]
 
 set :shared_database_path, "#{shared_path}/db"
 set :shared_config_path, "#{shared_path}/config"

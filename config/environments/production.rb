@@ -55,7 +55,7 @@ Ihub::Application.configure do
   config.action_mailer.smtp_settings = { 
     :address        => 'localhost',
     :port           => 25,
-    :domain         => 'ihub.phillbaker.com',
+    :domain         => 'mobyle.phillbaker.com',
     :enable_starttls_auto => false 
   }
   
