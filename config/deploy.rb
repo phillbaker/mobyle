@@ -1,8 +1,9 @@
-require 'bundler/capistrano'
 # BAD_BUNDLE = false
 # NOTIFY = false
-require 'rubygems'
-require 'bundler/setup'
+# require 'rubygems'
+# require 'bundler/setup'
+require 'bundler/capistrano'
+require "rvm/capistrano" 
 # require 'capistrano_colors'
 require 'config/deploy/notifier.rb'
 load 'deploy/assets' #unless BAD_BUNDLE #== bundle exec rake RAILS_ENV=production RAILS_GROUPS=assets assets:precompile
@@ -15,6 +16,9 @@ set :application, "mobyle.phillbaker.com"
 set :deploy_to, "/var/www/#{application}"
 
 set :user, "capistrano"
+
+#set :rvm_ruby_string, :local #'1.8.7' #
+set :rvm_type, :system 
 
 set :scm, :git
 set :repository,  "."
@@ -90,6 +94,9 @@ end
 namespace :deploy do
   task :start do ; end
   task :stop do ; end
+  task :test_user do
+    run "whoami"
+  end
   task :restart, :roles => :app, :except => { :no_release => true } do
     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
   end

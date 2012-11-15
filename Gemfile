@@ -65,6 +65,7 @@ group :deploy do
   # gem 'capistrano', '~>2.11.2' #'2.13.0'
   # gem 'capistrano_colors'
 end
+gem 'rvm-capistrano'
 
 # To use debugger
 # gem 'ruby-debug19', '~> 0.11.6', :require => 'ruby-debug'
