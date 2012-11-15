@@ -74,7 +74,7 @@ class HubsController < ApplicationController
   # PUT /hubs/1
   # PUT /hubs/1.json
   def update
-
+    
     respond_to do |format|
       if @hub.update(params[:hub])
         format.html { redirect_to @hub, :notice => 'Hub was successfully updated.' }

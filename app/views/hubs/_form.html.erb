@@ -4,13 +4,22 @@
 	<div class="form-inputs">
 		<%= f.input :name %>
 		<%= f.input :mobile_footer, :hint => 'Customize your footer!' %>
-		<%# Show private link if we've already been created #TODO have a button to reset this link %>
+		<%# Show private link if we've already been created, 
+		  can't use the simple form helpers because we don't actually want to directly update the attribute 
+		  #TODO clean up this messiness %>
 		<%- if @hub.private_seed -%>
-			<%= f.input :private_link, :hint => 'This will permanently change the private link for everyone accessing this hub. Are you sure?' do %>
-				<%= f.text_field :private_link, :readonly => true %>
-				<%#TODO make this work %>
-				<%= button_tag 'Reset the private link', :class => 'btn btn-danger' %>
-			<% end %>
+			<div class="control-group required">
+		    <%= label_tag 'private_link', 'Private link', :class => 'required control-label' do %>
+		      <abbr title="required">*</abbr>
+		      Private link
+		    <% end %>
+		    <div class="controls">
+		      <%= text_field_tag 'private_link', @hub.private_link, :readonly => true %>
+		      <%#TODO make this button work! %>
+		      <%= button_tag 'Reset the private link', :class => 'btn btn-danger' %>
+		      <p class="help-block">This will permanently change the private link for everyone accessing this hub. Are you sure?</p>
+		    </div>
+			</div>
 		<%- end -%>
 	</div>
 	
