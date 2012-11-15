@@ -73,8 +73,26 @@ class User
   # validates_confirmation_of :password,  :on => :create
   # validates_length_of       :password,  :within => Devise.password_length, :allow_blank => true
   
+  # Send the appropriate general welcome (on signup) or welcome-newsletter (on subscribe) email
+  after :create do
+    if self.invited_by_type == 'newsletter'
+      send_newsletter_welcome_email
+    else
+      send_welcome_email
+    end
+  end
+  
   def admin?
     self.admin || self.id == 1 # User with ID of 1 is superuser
+  end
+  
+  
+  def send_welcome_email
+    UserMailer.deliver_welcome_email(self) #TODO put this in an gem extending devise
+  end
+  
+  def send_newsletter_welcome_email
+    UserMailer.deliver_newsletter_welcome_email(self)
   end
   
 end

@@ -6,7 +6,7 @@
 		<%- group.contacts.each do |contact| -%>
 			<li class="contact" data-icon="phone">
 				<a class="link-main" href="tel:<%= contact.telephone -%>">
-					<h3 class=""><%= contact.name -%></h3>
+					<h3 class=""><%= contact.name.strip -%></h3>
 					<%# Eh...placeholder, not a great solution. Move to a collapsible list format, with 1 row per contact type, or buttons in the row, see: http://jquerymobile.com/demos/1.2.0/docs/lists/lists-collapsible.html or with split buttons: http://jquerymobile.com/demos/1.2.0/docs/lists/lists-themes.html %>
 					<%- unless contact.email.blank? -%> <p class="more"><strong>&nbsp;</strong></p><%- end -%>
 				</a>

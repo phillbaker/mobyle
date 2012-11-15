@@ -94,7 +94,9 @@ class UsersController < ApplicationController
   def invite_by_newsletter
     attributes = params[:user] #TODO sanitize the input here
     attributes[:invited_by_type] = 'newsletter'
-    @user = User.invite!(attributes) 
+    @user = User.invite!(attributes) do |u|
+      u.skip_invitation = true
+    end
     
     respond_to do |format|
       # TODO this assumes always coming from front page
