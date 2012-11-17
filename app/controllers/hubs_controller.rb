@@ -128,7 +128,7 @@ class HubsController < ApplicationController
   
   # Helper to create the "support" group (contact info/etc.)
   def support_group
-    support_group = Group.new(:name => 'iHub Support')
+    support_group = Group.new(:name => 'Support')
     support_contact = Contact.new(:name => 'Email us for more help or suggestions.', :email => 'name@example.com') #TODO put in real e-mail/etc.
     #support_contact.group = support_group
     support_group.contacts << support_contact
