@@ -52,7 +52,7 @@
 		  	<%= render_breadcrumbs :builder => ::BootstrapBreadcrumbsBuilder, :separator => '&raquo;' %>
 			<% end -%>
 		</header>
-		<div id="container">
+		<div id="container" class="<%= @is_home ? 'home' : '' %>">
 	    <div id="main" role="main">
 				<%= yield %>
 	    </div>

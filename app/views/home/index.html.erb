@@ -21,21 +21,40 @@
   </div>
 	<div id="info" class="row">
 		<div class="span4">
-			<h4>Web Interface to import, group and edit content</h4>
-			<p>A screenshot of the editing interface?</p>
+			<h4>Web interface to import, group and edit content</h4>
+			<div id="edit_carosel" class="carousel slide thumbnail" data-interval="1500">
+        <div class="carousel-inner">
+          <div class="active item">
+            <%= image_tag 'subgroup_2.png' %>
+          </div>
+          <div class="item">
+            <%= image_tag 'contact_2.png' %>
+          </div>
+          <div class="item">
+            <%= image_tag 'file_1.png' %>
+          </div>
+          <div class="item">
+            <%= image_tag 'import_1.png' %>
+          </div>
+        </div>
+        <a class="carousel-control left" href="#edit_carosel" data-slide="prev">&lsaquo;</a>
+        <a class="carousel-control right" href="#edit_carosel" data-slide="next">&rsaquo;</a>
+      </div>
 		</div>
 		<div class="span4">
 			<h4>Send the private link to just the people you want</h4>
-			<p>A screenshot of the mobile interface?</p>
+			<%= image_tag 'share_1.png', :class => 'thumbnail' %>
 		</div>
 		<div class="span4">
 			<h4>Install the mobile app on Android and iOS</h4>
-			<p>A diagram of something moving from laptop to mobile phone?</p>
+			<%= image_tag 'mobile_1.png', :class => 'thumbnail' %>
 		</div>
 	</div>
 	<div class="row well row-well">
 		<div class="span5">
-			<p>We're super geeks, but we're not Superman. To make sure that everyone who's signing up for our site has a great experience off of the bat, we inviting people to join on a rolling basis as we have resources. If you give us your e-mail, we'll let you know when your slot is ready and give you first opportunity to claim that spot.</p>
+			<p>We're super geeks, but we're not Superman.</p>
+			<p>To make sure that everyone who's signing up for our site has a great experience, we inviting people to join on a rolling basis as we have resources.</p>
+			<p>If you give us your e-mail, we'll let you know when your slot is ready and give you first opportunity to claim that spot.</p>
 		</div>
 		<div class="span5 offset1">
 			<%= simple_form_for(@user, :url => user_invite_path, :method => :post, :html => { :class => 'form-inline' }) do |f| %>

@@ -1,5 +1,5 @@
 <%- unless group.items.empty? -%>
-	<ul data-role="listview" data-inset="true" data-filter="true" data-filter-placeholder="Filter..." data-autodividers="true">
+	<ul data-role="listview" data-inset="true" data-filter="true" data-filter-placeholder="Filter..." data-autodividers="true" data-divider-theme="a">
 		<%- group.children.each do |child| -%>
 			<li><a href="#group-<%= child.id %>"><%= child.name %></a></li>
 		<%- end -%>
